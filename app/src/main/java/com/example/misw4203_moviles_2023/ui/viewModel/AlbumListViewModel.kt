@@ -7,7 +7,7 @@ import com.example.misw4203_moviles_2023.data.model.AlbumModel
 import com.example.misw4203_moviles_2023.domain.album.GetAlbums
 import kotlinx.coroutines.launch
 
-class AlbumsViewModel: ViewModel() {
+class AlbumListViewModel: ViewModel() {
 
     val albumModel = MutableLiveData<List<AlbumModel>?>()
     val isLoading = MutableLiveData<Boolean>()

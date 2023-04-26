@@ -1,8 +1,7 @@
 package com.example.misw4203_moviles_2023.ui.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.misw4203_moviles_2023.R
+import androidx.appcompat.app.AppCompatActivity
 import com.example.misw4203_moviles_2023.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/albumList">
+
+    <fragment
+        android:id="@+id/albumList"
+        android:name="com.example.misw4203_moviles_2023.ui.view.AlbumList"
+        android:label="fragment_album_list"
+        tools:layout="@layout/fragment_album_list" >
+        <action
+            android:id="@+id/action_albumList_to_albumDetail"
+            app:destination="@id/albumDetail" />
+    </fragment>
+    <fragment
+        android:id="@+id/albumDetail"
+        android:name="com.example.misw4203_moviles_2023.ui.view.AlbumDetail"
+        android:label="fragment_album_detail"
+        tools:layout="@layout/fragment_album_detail" />
+    <fragment
+        android:id="@+id/albumCreate"
+        android:name="com.example.misw4203_moviles_2023.ui.view.AlbumCreate"
+        android:label="fragment_album_create"
+        tools:layout="@layout/fragment_album_create" />
+    <fragment
+        android:id="@+id/artistList"
+        android:name="com.example.misw4203_moviles_2023.ui.view.ArtistList"
+        android:label="fragment_artist_list"
+        tools:layout="@layout/fragment_artist_list" >
+        <action
+            android:id="@+id/action_artistList_to_artistDetail"
+            app:destination="@id/artistDetail" />
+    </fragment>
+    <fragment
+        android:id="@+id/artistDetail"
+        android:name="com.example.misw4203_moviles_2023.ui.view.ArtistDetail"
+        android:label="fragment_artist_detail"
+        tools:layout="@layout/fragment_artist_detail" />
+    <fragment
+        android:id="@+id/collectorList"
+        android:name="com.example.misw4203_moviles_2023.ui.view.CollectorList"
+        android:label="fragment_collector_list"
+        tools:layout="@layout/fragment_collector_list" >
+        <action
+            android:id="@+id/action_collectorList_to_collectorDetail"
+            app:destination="@id/collectorDetail" />
+    </fragment>
+    <fragment
+        android:id="@+id/collectorDetail"
+        android:name="com.example.misw4203_moviles_2023.ui.view.CollectorDetail"
+        android:label="fragment_collector_detail"
+        tools:layout="@layout/fragment_collector_detail" />
+    <fragment
+        android:id="@+id/albumAddTrack"
+        android:name="com.example.misw4203_moviles_2023.ui.view.AlbumAddTrack"
+        android:label="fragment_album_add_track"
+        tools:layout="@layout/fragment_album_add_track" />
+</navigation>
