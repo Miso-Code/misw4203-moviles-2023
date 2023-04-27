@@ -6,12 +6,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.misw4203_moviles_2023.adapter.AlbumAdapter
 import com.example.misw4203_moviles_2023.adapter.OnItemClickListener
+import com.example.misw4203_moviles_2023.data.model.AlbumModel
 import com.example.misw4203_moviles_2023.databinding.FragmentAlbumListBinding
 import com.example.misw4203_moviles_2023.ui.viewModel.AlbumListViewModel
+
+
 
 class AlbumList : Fragment() {
 
@@ -27,6 +31,9 @@ class AlbumList : Fragment() {
     private var _binding: FragmentAlbumListBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var progressBar: ProgressBar
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,22 +44,31 @@ class AlbumList : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         viewModel = ViewModelProvider(this).get(AlbumListViewModel::class.java)
         viewModel.onCreate()
+
+        progressBar = binding.progressBar
+
 
         albumRecyclerView = binding.albumListRecyclerView
         albumLayoutManager = LinearLayoutManager(context)
         albumRecyclerView.layoutManager = albumLayoutManager
-
+        albumRecyclerView.visibility = View.GONE
+        progressBar.visibility = View.VISIBLE
         viewModel.albumModel.observe(viewLifecycleOwner) {
             albumAdapter = AlbumAdapter(requireContext(), it ?: emptyList())
             albumAdapter.setOnItemClickListener(object : OnItemClickListener {
-                override fun onItemClick(position: Int) {
-                    // redirect to album detail
+                override fun onItemClick(position: Int, album: AlbumModel) {
+                    // ToDo: redirect to album detail action_albumList_to_albumDetail
                 }
             })
-            albumRecyclerView.adapter = albumAdapter   
+            albumRecyclerView.adapter = albumAdapter
+            progressBar.visibility = View.GONE
+            albumRecyclerView.visibility = View.VISIBLE
+
         }
+
     }
 
     override fun onDestroyView() {

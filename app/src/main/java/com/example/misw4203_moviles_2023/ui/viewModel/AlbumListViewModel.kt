@@ -21,8 +21,9 @@ class AlbumListViewModel : ViewModel() {
                 it.releaseDate =
                     it.releaseDate.substring(0, 10).split("-").reversed().joinToString("/")
             }
+            val sortedResult = result?.sortedByDescending { it.name }
             if (!result.isNullOrEmpty()) {
-                albumModel.postValue(result)
+                albumModel.postValue(sortedResult)
                 isLoading.postValue(false)
             }
         }

@@ -9,7 +9,7 @@ import com.example.misw4203_moviles_2023.data.model.AlbumModel
 import com.example.misw4203_moviles_2023.databinding.AlbumRowBinding
 
 interface OnItemClickListener {
-    fun onItemClick(position: Int)
+    fun onItemClick(position: Int, album: AlbumModel)
 }
 
 
@@ -40,7 +40,7 @@ class AlbumAdapter(private val context: Context, private val albumList: List<Alb
         val album = albumList[position]
         holder.bind(album)
         holder.itemView.setOnClickListener {
-            onItemClickListener?.onItemClick(position)
+            onItemClickListener?.onItemClick(position, album)
         }
     }
 
