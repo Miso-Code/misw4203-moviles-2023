@@ -1,0 +1,23 @@
+#!/bin/sh
+
+echo "Running pre-commit hook"
+echo "-----------------------"
+
+# Stash any unstaged changes
+git stash -q --keep-index
+
+# Run ktlint
+echo "Running ktlint"
+./gradlew ktlintFormat
+
+# Run detekt
+echo "Running detekt"
+./gradlew detekt
+
+# Run android lint
+echo "Running android lint"
+./gradlew lintDebug
+
+# Run spotless
+echo "Running spotless"
+./gradlew spotlessApply

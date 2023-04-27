@@ -1,6 +1,48 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'org.jlleitschuh.gradle.ktlint' version '10.2.0'
+    id 'org.jlleitschuh.gradle.ktlint-idea' version '10.2.0'
+    id 'io.gitlab.arturbosch.detekt' version '1.18.1'
+    id 'com.diffplug.spotless' version '6.18.0'
+}
+
+apply plugin: 'io.gitlab.arturbosch.detekt'
+apply plugin: "org.jlleitschuh.gradle.ktlint-idea"
+apply plugin: 'com.diffplug.spotless'
+
+detekt {
+    toolVersion = "1.18.1"
+    basePath = projectDir
+    reports {
+        html { enabled = true }
+        txt { enabled = false }
+        xml { enabled = false }
+    }
+
+}
+
+spotless {
+    // optional: limit format enforcement to just the files changed by this feature branch
+    ratchetFrom 'origin/develop'
+
+    format 'misc', {
+        // define the files to apply `misc` to
+        target '**/*.gradle', '**/*.md', '**/.gitignore'
+
+        // define the steps to apply to those files
+        indentWithSpaces()
+        trimTrailingWhitespace()
+        endWithNewline()
+    }
+
+    kotlin {
+        target '**/*.kt'
+        ktlint()
+        trimTrailingWhitespace()
+        indentWithSpaces()
+        endWithNewline()
+    }
 }
 
 android {
@@ -23,16 +65,26 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = '1.8'
     }
 
     buildFeatures{
         viewBinding = true
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError true
+        warningsAsErrors true
+        ignoreWarnings true
+        lintConfig file("lint.xml")
     }
 }
 
@@ -81,4 +133,13 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.18.1")
 }
+
+task installLocalGitHook(type: Copy){
+    from new File(rootProject.rootDir, 'scripts/pre-commit')
+    into { new File(rootProject.rootDir, '.git/hooks')}
+    fileMode 0775
+}
+
+build.dependsOn installLocalGitHook
