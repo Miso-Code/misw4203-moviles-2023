@@ -24,9 +24,6 @@ detekt {
 }
 
 spotless {
-    // optional: limit format enforcement to just the files changed by this feature branch
-    ratchetFrom 'origin/develop'
-
     format 'misc', {
         // define the files to apply `misc` to
         target '**/*.gradle', '**/*.md', '**/.gitignore'
@@ -75,7 +72,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    buildFeatures{
+    buildFeatures {
         viewBinding = true
     }
 
@@ -138,9 +135,9 @@ dependencies {
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.18.1")
 }
 
-task installLocalGitHook(type: Copy){
+task installLocalGitHook(type: Copy) {
     from new File(rootProject.rootDir, 'scripts/pre-commit')
-    into { new File(rootProject.rootDir, '.git/hooks')}
+    into { new File(rootProject.rootDir, '.git/hooks') }
     fileMode 0775
 }
 
