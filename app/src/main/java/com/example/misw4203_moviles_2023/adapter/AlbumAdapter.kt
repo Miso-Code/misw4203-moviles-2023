@@ -26,7 +26,7 @@ class AlbumAdapter(private val context: Context, private val albumList: List<Alb
             binding.albumReleaseDate.text = album.releaseDate
             Glide.with(context)
                 .load(album.cover)
-                .placeholder(R.drawable.album_svgrepo_com)
+                .placeholder(R.drawable.ic_album)
                 .into(binding.albumImage)
         }
     }

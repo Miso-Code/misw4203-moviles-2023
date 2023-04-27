@@ -1,7 +1,11 @@
 <resources>
     <string name="app_name">Misw4203-moviles-2023</string>
-    <string name="album_list">Album List</string>
-    <string name="hello">Hello</string>
+    <string name="hello">Misw4203-moviles-2023</string>
+
+    <string name="album_name">Álbum</string>
+    <string name="album_cover">Portada del álbum</string>
+    <string name="album_release_date">Fecha de lanzamiento</string>
+
     <string name="title_activity_navigation_drawer">NavigationDrawer</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
