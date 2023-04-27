@@ -1,12 +1,13 @@
 package com.example.misw4203_moviles_2023.ui.view
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.misw4203_moviles_2023.R
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
+import com.example.misw4203_moviles_2023.databinding.FragmentAlbumDetailBinding
 import com.example.misw4203_moviles_2023.ui.viewModel.AlbumDetailViewModel
 
 class AlbumDetail : Fragment() {
@@ -17,17 +18,26 @@ class AlbumDetail : Fragment() {
 
     private lateinit var viewModel: AlbumDetailViewModel
 
+    private var _binding: FragmentAlbumDetailBinding? = null
+    private val binding get() = _binding!!
+
+    private val args: AlbumDetailArgs by navArgs()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_album_detail, container, false)
+    ): View {
+        _binding = FragmentAlbumDetailBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         viewModel = ViewModelProvider(this).get(AlbumDetailViewModel::class.java)
         // TODO: Use the ViewModel
+
+        binding.albumDetailTextView.text = "Album Detail ${args.albumId}"
     }
 
 }

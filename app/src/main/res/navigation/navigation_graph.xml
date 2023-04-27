@@ -9,16 +9,25 @@
         android:id="@+id/albumList"
         android:name="com.example.misw4203_moviles_2023.ui.view.AlbumList"
         android:label="fragment_album_list"
-        tools:layout="@layout/fragment_album_list" >
+        tools:layout="@layout/fragment_album_list">
         <action
             android:id="@+id/action_albumList_to_albumDetail"
-            app:destination="@id/albumDetail" />
+            app:destination="@id/albumDetail">
+            <argument
+                android:name="albumId"
+                app:argType="integer" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/albumDetail"
         android:name="com.example.misw4203_moviles_2023.ui.view.AlbumDetail"
         android:label="fragment_album_detail"
-        tools:layout="@layout/fragment_album_detail" />
+        tools:layout="@layout/fragment_album_detail" >
+        <argument
+            android:name="albumId"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
     <fragment
         android:id="@+id/albumCreate"
         android:name="com.example.misw4203_moviles_2023.ui.view.AlbumCreate"
@@ -28,7 +37,7 @@
         android:id="@+id/artistList"
         android:name="com.example.misw4203_moviles_2023.ui.view.ArtistList"
         android:label="fragment_artist_list"
-        tools:layout="@layout/fragment_artist_list" >
+        tools:layout="@layout/fragment_artist_list">
         <action
             android:id="@+id/action_artistList_to_artistDetail"
             app:destination="@id/artistDetail" />
@@ -42,7 +51,7 @@
         android:id="@+id/collectorList"
         android:name="com.example.misw4203_moviles_2023.ui.view.CollectorList"
         android:label="fragment_collector_list"
-        tools:layout="@layout/fragment_collector_list" >
+        tools:layout="@layout/fragment_collector_list">
         <action
             android:id="@+id/action_collectorList_to_collectorDetail"
             app:destination="@id/collectorDetail" />

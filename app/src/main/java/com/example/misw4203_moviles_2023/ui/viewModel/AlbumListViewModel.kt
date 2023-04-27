@@ -7,19 +7,23 @@ import com.example.misw4203_moviles_2023.data.model.AlbumModel
 import com.example.misw4203_moviles_2023.domain.album.GetAlbums
 import kotlinx.coroutines.launch
 
-class AlbumListViewModel: ViewModel() {
+class AlbumListViewModel : ViewModel() {
 
     val albumModel = MutableLiveData<List<AlbumModel>?>()
     val isLoading = MutableLiveData<Boolean>()
 
     var getAlbums = GetAlbums()
-
-    fun onCreate(){
+    fun onCreate() {
         viewModelScope.launch {
             isLoading.postValue(true)
             val result = getAlbums()
-            if (!result.isNullOrEmpty()){
-                albumModel.postValue(result)
+            result?.forEach {
+                it.releaseDate =
+                    it.releaseDate.substring(0, 10).split("-").reversed().joinToString("/")
+            }
+            val sortedResult = result?.sortedByDescending { it.name }
+            if (!result.isNullOrEmpty()) {
+                albumModel.postValue(sortedResult)
                 isLoading.postValue(false)
             }
         }
