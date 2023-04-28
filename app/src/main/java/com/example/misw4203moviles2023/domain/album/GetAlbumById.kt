@@ -1,4 +1,4 @@
-package com.example.misw4203_moviles_2023.domain.album
+package com.example.misw4203moviles2023.domain.album
 
 import com.example.misw4203_moviles_2023.data.AlbumRepository
 import com.example.misw4203_moviles_2023.data.model.AlbumModel
