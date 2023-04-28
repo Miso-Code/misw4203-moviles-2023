@@ -44,7 +44,7 @@ class AlbumList : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this).get(AlbumListViewModel::class.java)
+        viewModel = ViewModelProvider(this)[AlbumListViewModel::class.java]
         viewModel.onCreate()
 
         progressBar = binding.progressBar

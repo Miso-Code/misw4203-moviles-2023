@@ -6,5 +6,5 @@ import com.example.misw4203_moviles_2023.data.model.AlbumModel
 class GetAlbumById {
     private val repository = AlbumRepository()
 
-    suspend operator fun invoke(id:Int):AlbumModel? = repository.getAlbumById(id)
+    suspend operator fun invoke(id:Int):AlbumModel = repository.getAlbumById(id)
 }
