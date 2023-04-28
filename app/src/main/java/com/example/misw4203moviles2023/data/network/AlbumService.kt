@@ -13,4 +13,11 @@ class AlbumService {
             response.body() ?: emptyList()
         }
     }
+
+    suspend fun getAlbumById(id: Int): AlbumModel {
+        return withContext(Dispatchers.IO) {
+            val response = retrofit.create(AlbumApiClient::class.java).getAlbumById(id)
+            response.body() ?: AlbumModel(0, "", "", "", "", "", "", emptyList())
+        }
+    }
 }

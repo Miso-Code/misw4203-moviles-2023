@@ -2,10 +2,10 @@ package com.example.misw4203moviles2023.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.misw4203_moviles_2023.data.model.TrackModel
+import com.example.misw4203moviles2023.data.model.TrackModel
 import com.example.misw4203moviles2023.databinding.TrackRowBinding
 
-class TrackAdapter(private val TrackList: List<TrackModel>) :
+class TrackAdapter(private val trackList: List<TrackModel>) :
     RecyclerView.Adapter<TrackAdapter.TrackViewHolder>() {
 
     inner class TrackViewHolder(private val binding: TrackRowBinding) :
@@ -23,10 +23,9 @@ class TrackAdapter(private val TrackList: List<TrackModel>) :
     }
 
     override fun onBindViewHolder(holder: TrackViewHolder, position: Int) {
-        val track = TrackList[position]
+        val track = trackList[position]
         holder.bind(track)
     }
 
-
-    override fun getItemCount() = TrackList.size
+    override fun getItemCount() = trackList.size
 }

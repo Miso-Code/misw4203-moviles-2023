@@ -19,12 +19,13 @@ class AlbumListViewModel : ViewModel() {
         viewModelScope.launch {
             isLoading.postValue(true)
             val result = getAlbums()
-            result.forEach {
+            result?.forEach {
                 it.releaseDate =
-                    it.releaseDate.substring(0, TIMESTAMPT_REGEX_END).split("-").reversed().joinToString("/")
+                    it.releaseDate.substring(0, TIMESTAMPT_REGEX_END).split("-").reversed()
+                        .joinToString("/")
             }
-            val sortedResult = result.sortedByDescending { it.name }
-            if (result.isNotEmpty()) {
+            val sortedResult = result?.sortedByDescending { it.name }
+            if (result?.isNotEmpty() == true) {
                 albumModel.postValue(sortedResult)
                 isLoading.postValue(false)
             }

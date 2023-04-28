@@ -12,7 +12,7 @@ git stash -q --keep-index
 # Run ktlint
 echo "Running ktlint"
 KTLINT_OUTPUT=$OUTPUT_DIR/ktlint.txt
-./gradlew ktlintFormat >$KTLINT_OUTPUT
+./gradlew ktlintCheck >$KTLINT_OUTPUT
 EXIT_CODE=$?
 if [ $EXIT_CODE -ne 0 ]; then
   echo "***********************************************"

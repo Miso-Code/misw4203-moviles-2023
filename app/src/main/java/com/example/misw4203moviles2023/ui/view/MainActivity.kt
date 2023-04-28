@@ -8,14 +8,13 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.misw4203moviles2023.R
 import com.example.misw4203moviles2023.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
 
-class MainActivity : AppCompatActivity()  {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
@@ -29,7 +28,6 @@ class MainActivity : AppCompatActivity()  {
         setSupportActionBar(binding.appBarNavigationDrawer.toolbar)
 
         binding.appBarNavigationDrawer.toolbar.overflowIcon = null
-
 
         /*binding.appBarNavigationDrawer.fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)

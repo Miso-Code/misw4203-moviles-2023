@@ -13,6 +13,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.misw4203moviles2023.R
 import com.example.misw4203moviles2023.adapter.TrackAdapter
 import com.example.misw4203moviles2023.databinding.FragmentAlbumDetailBinding
 import com.example.misw4203moviles2023.ui.viewModel.AlbumDetailViewModel
@@ -35,7 +36,7 @@ class AlbumDetail : Fragment() {
 
     private val args: AlbumDetailArgs by navArgs()
 
-    private  var actionBar: ActionBar? = null
+    private var actionBar: ActionBar? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -66,11 +67,10 @@ class AlbumDetail : Fragment() {
         binding.albumTracks.visibility = View.GONE
         binding.albumDetailImageView.visibility = View.GONE
 
-
         viewModel.albumModel.observe(viewLifecycleOwner) {
-            if(it?.tracks?.isEmpty() != true)
+            if (it?.tracks?.isEmpty() != true) {
                 binding.albumTracks.visibility = View.VISIBLE
-
+            }
 
             binding.albumDescription.visibility = View.VISIBLE
             binding.albumGenre.visibility = View.VISIBLE
