@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="MISW4204-MOVILES">
+    <description>MISW4204-MOVILES</description>
+
+    <rule ref="PSR2">
+        <exclude name="PSR2.Classes.PropertyDeclaration.Underscore"/>
+    </rule>
+
+    <rule ref="Generic.CodeAnalysis.EmptyStatement"/>
+    <rule ref="Generic.CodeAnalysis.ForLoopShouldBeWhileLoop"/>
+    <rule ref="Generic.CodeAnalysis.JumbledIncrementer"/>
+    <rule ref="Generic.CodeAnalysis.UnconditionalIfStatement"/>
+    <rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/>
+    <rule ref="Generic.CodeAnalysis.UnusedGlobalVariable"/>
+    <rule ref="Generic.CodeAnalysis.UnusedLocalVariable"/>
+    <rule ref="Generic.CodeAnalysis.UselessOverridingMethod"/>
+    <rule ref="Generic.CodeAnalysis.UselessOverridingMethod.Found"/>
+    <rule ref="Generic.CodeAnalysis.UselessOverridingMethod.NotFound"/>
+    <rule ref="Generic.CodeAnalysis.UselessOverridingMethod.Unused"/>
+    <rule ref="Generic.CodeAnalysis.UselessOverridingMethod.Used"/>
+    <rule ref="Generic.CodeAnalysis.UselessOverridingMethod.UsedInParent"/>
+    <rule ref="Generic.CodeAnalysis.UselessOverridingMethod.UsedInSameClass"/>
+    <rule ref="Generic.CodeAnalysis.UselessOverridingMethod.UsedInSiblingClass"/>
+    <rule ref="Generic.CodeAnalysis.UselessOverridingMethod.UsedInSubclass"/>
+    <rule ref="Generic.CodeAnalysis.UselessOverridingMethod.UsedInSubclassOfSibling"/>
+    <rule ref="Generic.CodeAnalysis.UselessOverridingMethod.UsedInTrait"/>
+    <rule ref="Generic.CodeAnalysis.UselessOverridingMethod.UsedInTraitOfSibling"/>
+    <rule ref="Generic.CodeAnalysis.UselessOverridingMethod.UsedInTraitOfSubclass"/>
+    <rule ref="Generic.CodeAnalysis.UselessOverridingMethod.UsedInTraitOfSubclassOfSibling"/>
+    <rule ref="Generic.CodeAnalysis.UselessOverridingMethod.UsedInTraitOfSubclassOfTrait"/>
+    <rule ref="Generic.CodeAnalysis.UselessOverridingMethod.UsedInTraitOfTrait"/>
+    <rule ref="Generic.CodeAnalysis.UselessOverridingMethod.UsedInTraitOfTraitOfSibling"/>
+    <rule ref="Generic.CodeAnalysis.UselessOverridingMethod.UsedInTraitOfTraitOfSubclass"/>
+    <rule ref="Generic.CodeAnalysis.UselessOverridingMethod.UsedInTraitOfTraitOfSubclassOfSibling"/>
+    <rule ref="Generic.CodeAnalysis.UselessOverridingMethod.UsedInTraitOfTraitOfSubclass"/>
+
+</ruleset>

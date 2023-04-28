@@ -1,14 +1,11 @@
-package com.example.misw4203_moviles_2023.adapter
-import android.content.Context
+package com.example.misw4203moviles2023.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.example.misw4203_moviles_2023.R
 import com.example.misw4203_moviles_2023.data.model.TrackModel
-import com.example.misw4203_moviles_2023.databinding.TrackRowBinding
+import com.example.misw4203moviles2023.databinding.TrackRowBinding
 
-class TrackAdapter(private val context: Context, private val TrackList: List<TrackModel>) :
+class TrackAdapter(private val TrackList: List<TrackModel>) :
     RecyclerView.Adapter<TrackAdapter.TrackViewHolder>() {
 
     inner class TrackViewHolder(private val binding: TrackRowBinding) :

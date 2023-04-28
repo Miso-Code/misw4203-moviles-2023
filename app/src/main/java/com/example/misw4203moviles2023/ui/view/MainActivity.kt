@@ -1,4 +1,4 @@
-package com.example.misw4203moviles2023.ui
+package com.example.misw4203moviles2023.ui.view
 
 import android.os.Bundle
 import android.view.Menu

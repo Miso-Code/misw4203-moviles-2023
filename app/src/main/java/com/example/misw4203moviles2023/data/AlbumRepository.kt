@@ -6,11 +6,9 @@ import com.example.misw4203moviles2023.data.network.AlbumService
 class AlbumRepository {
     private val api = AlbumService()
     suspend fun getAllAlbums(): List<AlbumModel> {
-        val response: List<AlbumModel> = api.getAlbums()
-        return response
+        return api.getAlbums()
     }
-    suspend fun  getAlbumById(id:Int): AlbumModel {
-        val response: AlbumModel = api.getAlbumById(id)
-        return response
+    suspend fun getAlbumById(id: Int): AlbumModel {
+        return api.getAlbumById(id)
     }
 }

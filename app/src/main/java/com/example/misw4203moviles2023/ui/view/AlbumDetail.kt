@@ -11,7 +11,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.misw4203_moviles_2023.adapter.TrackAdapter
+import com.example.misw4203moviles2023.adapter.TrackAdapter
 import com.example.misw4203moviles2023.databinding.FragmentAlbumDetailBinding
 import com.example.misw4203moviles2023.ui.viewModel.AlbumDetailViewModel
 
@@ -45,7 +45,7 @@ class AlbumDetail : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this).get(AlbumDetailViewModel::class.java)
+        viewModel = ViewModelProvider(this)[AlbumDetailViewModel::class.java]
         viewModel.onCreate(args.albumId)
 
         progressBar = binding.progressBarAlbumDetail
@@ -65,7 +65,7 @@ class AlbumDetail : Fragment() {
                 .placeholder(R.drawable.ic_album)
                 .into(binding.albumDetailImageView)
 
-            trackAdapter = TrackAdapter(requireContext(), it?.tracks ?: emptyList())
+            trackAdapter = TrackAdapter(it?.tracks ?: emptyList())
             trackRecyclerView.adapter = trackAdapter
             progressBar.visibility = View.GONE
             trackRecyclerView.visibility = View.VISIBLE
