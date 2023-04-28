@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
@@ -33,6 +35,8 @@ class AlbumDetail : Fragment() {
 
     private val args: AlbumDetailArgs by navArgs()
 
+    private  var actionBar: ActionBar? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -55,10 +59,29 @@ class AlbumDetail : Fragment() {
         trackRecyclerView.layoutManager = trackLayoutManager
         trackRecyclerView.visibility = View.GONE
         progressBar.visibility = View.VISIBLE
+
+        binding.albumDescription.visibility = View.GONE
+        binding.albumGenre.visibility = View.GONE
+        binding.albumRecordLabel.visibility = View.GONE
+        binding.albumTracks.visibility = View.GONE
+        binding.albumDetailImageView.visibility = View.GONE
+
+
         viewModel.albumModel.observe(viewLifecycleOwner) {
+            if(it?.tracks?.isEmpty() != true)
+                binding.albumTracks.visibility = View.VISIBLE
+
+
+            binding.albumDescription.visibility = View.VISIBLE
+            binding.albumGenre.visibility = View.VISIBLE
+            binding.albumRecordLabel.visibility = View.VISIBLE
+            binding.albumDetailImageView.visibility = View.VISIBLE
+
             binding.albumDescription.text = it?.description
             binding.albumGenre.text = "Género del álbum: ${it?.genre}"
             binding.albumRecordLabel.text = "${it?.recordLabel}"
+
+            actionBar?.title = it?.name
 
             Glide.with(requireContext())
                 .load(it?.cover)
@@ -70,5 +93,11 @@ class AlbumDetail : Fragment() {
             progressBar.visibility = View.GONE
             trackRecyclerView.visibility = View.VISIBLE
         }
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        actionBar = (activity as AppCompatActivity?)!!.supportActionBar
+        actionBar?.title = "Cargando..."
     }
 }

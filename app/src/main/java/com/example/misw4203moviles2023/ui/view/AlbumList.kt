@@ -5,11 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.misw4203moviles2023.R
 import com.example.misw4203moviles2023.adapter.AlbumAdapter
 import com.example.misw4203moviles2023.adapter.OnItemClickListener
 import com.example.misw4203moviles2023.data.model.AlbumModel
@@ -31,6 +34,8 @@ class AlbumList : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var progressBar: ProgressBar
+
+    private var actionBar: ActionBar? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -67,6 +72,12 @@ class AlbumList : Fragment() {
             progressBar.visibility = View.GONE
             albumRecyclerView.visibility = View.VISIBLE
         }
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        actionBar = (activity as AppCompatActivity?)!!.supportActionBar
+        actionBar?.title = getString(R.string.menu_album_list)
     }
 
     override fun onDestroyView() {
