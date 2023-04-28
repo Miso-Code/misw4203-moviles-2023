@@ -44,11 +44,11 @@ spotless {
 }
 
 android {
-    namespace 'com.example.misw4203_moviles_2023'
+    namespace 'com.example.misw4203moviles2023'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.misw4203_moviles_2023"
+        applicationId "com.example.misw4203moviles2023"
         minSdk 21
         targetSdk 33
         versionCode 1
@@ -72,6 +72,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
     buildFeatures {
         viewBinding = true
     }

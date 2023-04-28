@@ -1,23 +1,76 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 echo "Running pre-commit hook"
 echo "-----------------------"
+
+OUTPUT_DIR="/tmp/pre-commit-output"
+mkdir -p $OUTPUT_DIR
 
 # Stash any unstaged changes
 git stash -q --keep-index
 
 # Run ktlint
 echo "Running ktlint"
-./gradlew ktlintFormat
+KTLINT_OUTPUT=$OUTPUT_DIR/ktlint.txt
+./gradlew ktlintFormat >$KTLINT_OUTPUT
+EXIT_CODE=$?
+if [ $EXIT_CODE -ne 0 ]; then
+  echo "***********************************************"
+  echo "                 Ktlint failed                 "
+  echo " Please fix the below issues and try committing "
+  echo "***********************************************"
+  cat $KTLINT_OUTPUT
+  rm $KTLINT_OUTPUT
+  exit $EXIT_CODE
+fi
 
 # Run detekt
 echo "Running detekt"
-./gradlew detekt
+DETEKT_OUTPUT=$OUTPUT_DIR/detekt.txt
+./gradlew detekt >$DETEKT_OUTPUT
+EXIT_CODE=$?
+if [ $EXIT_CODE -ne 0 ]; then
+  echo "***********************************************"
+  echo "                 Detekt failed                 "
+  echo " Please fix the below issues and try committing "
+  echo "***********************************************"
+  cat $DETEKT_OUTPUT
+  rm $DETEKT_OUTPUT
+  exit $EXIT_CODE
+fi
 
 # Run android lint
 echo "Running android lint"
-./gradlew lintDebug
+ANDROID_LINT_OUTPUT=$OUTPUT_DIR/android-lint.txt
+./gradlew lintDebug >$ANDROID_LINT_OUTPUT
+EXIT_CODE=$?
+if [ $EXIT_CODE -ne 0 ]; then
+  echo "***********************************************"
+  echo "                 Android lint failed           "
+  echo " Please fix the below issues and try committing "
+  echo "***********************************************"
+  cat $ANDROID_LINT_OUTPUT
+  rm $ANDROID_LINT_OUTPUT
+  exit $EXIT_CODE
+fi
 
 # Run spotless
 echo "Running spotless"
-./gradlew spotlessApply
+SPOTLESS_OUTPUT=$OUTPUT_DIR/spotless.txt
+./gradlew spotlessApply >$SPOTLESS_OUTPUT
+EXIT_CODE=$?
+if [ $EXIT_CODE -ne 0 ]; then
+  echo "***********************************************"
+  echo "                 Spotless failed               "
+  echo " Please fix the below issues and try committing "
+  echo "***********************************************"
+  cat $SPOTLESS_OUTPUT
+  rm $SPOTLESS_OUTPUT
+  exit $EXIT_CODE
+fi
+
+# Delete output dir
+rm -rf $OUTPUT_DIR
+
+# Unstash unstaged changes
+git stash pop -q

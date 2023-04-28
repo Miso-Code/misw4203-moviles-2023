@@ -48,7 +48,7 @@ jobs:
         uses: actions/setup-java@v2
         with:
           distribution: 'adopt'
-          java-version: '11'
+          java-version: '19'
 
       - name: Cache Gradle and wrapper
         uses: actions/cache@v2
@@ -71,25 +71,3 @@ jobs:
 
       - name: Run Spotless
         run: ./gradlew spotlessCheck
-
-  auto-approve:
-    name: Auto approve PR
-    needs: static-analysis
-    runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
-    steps:
-      - uses: hmarr/auto-approve-action@v3
-        with:
-          review-message: "Auto approved automated PR"
-
-  auto-merge-branch:
-    name: Auto merge branch
-    needs: auto-approve
-    runs-on: ubuntu-latest
-    steps:
-      - id: automerge
-        name: automerge
-        uses: "pascalgn/automerge-action@v0.15.3"
-        env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
