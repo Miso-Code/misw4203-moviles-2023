@@ -12,7 +12,7 @@ private const val TIMESTAMPT_REGEX_END = 10
 class AlbumListViewModel : ViewModel() {
 
     val albumModel = MutableLiveData<List<AlbumModel>?>()
-    val isLoading = MutableLiveData<Boolean>()
+    private val isLoading = MutableLiveData<Boolean>()
 
     var getAlbums = GetAlbums()
     fun onCreate() {
@@ -21,10 +21,11 @@ class AlbumListViewModel : ViewModel() {
             val result = getAlbums()
             result?.forEach {
                 it.releaseDate =
-                    it.releaseDate.substring(0, TIMESTAMPT_REGEX_END).split("-").reversed().joinToString("/")
+                    it.releaseDate.substring(0, TIMESTAMPT_REGEX_END).split("-").reversed()
+                        .joinToString("/")
             }
             val sortedResult = result?.sortedByDescending { it.name }
-            if (!result.isNullOrEmpty()) {
+            if (result?.isNotEmpty() == true) {
                 albumModel.postValue(sortedResult)
                 isLoading.postValue(false)
             }

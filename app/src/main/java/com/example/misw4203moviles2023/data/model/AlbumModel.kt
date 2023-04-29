@@ -6,4 +6,7 @@ data class AlbumModel(
     val cover: String,
     var releaseDate: String,
     val description: String,
+    val genre: String,
+    val recordLabel: String,
+    val tracks: List<TrackModel>,
 )
