@@ -70,13 +70,22 @@
         tools:layout="@layout/fragment_collector_list">
         <action
             android:id="@+id/action_collectorList_to_collectorDetail"
-            app:destination="@id/collectorDetail" />
+            app:destination="@id/collectorDetail">
+            <argument
+                android:name="collectorId"
+                app:argType="integer" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/collectorDetail"
         android:name="com.example.misw4203moviles2023.ui.view.CollectorDetail"
         android:label="fragment_collector_detail"
-        tools:layout="@layout/fragment_collector_detail" />
+        tools:layout="@layout/fragment_collector_detail">
+        <argument
+            android:name="collectorId"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
     <fragment
         android:id="@+id/albumAddTrack"
         android:name="com.example.misw4203moviles2023.ui.view.AlbumAddTrack"
