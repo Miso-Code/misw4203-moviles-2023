@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.misw4203moviles2023.R
-import com.example.misw4203moviles2023.ui.viewModel.ArtistListViewModel
+
 
 class ArtistList : Fragment() {
 
