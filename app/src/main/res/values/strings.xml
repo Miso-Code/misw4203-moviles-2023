@@ -2,6 +2,7 @@
     <string name="app_name">Misw4203-moviles-2023</string>
     <string name="hello">Misw4203-moviles-2023</string>
 
+    <string name="albums">Álbumes</string>
     <string name="album_name">Álbum</string>
     <string name="album_cover">Portada del álbum</string>
     <string name="album_release_date">Fecha de lanzamiento</string>
