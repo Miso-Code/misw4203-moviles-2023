@@ -1,14 +1,10 @@
 package com.example.misw4203moviles2023.data
 
-import com.example.misw4203moviles2023.core.RetrofitHelper
-import com.example.misw4203moviles2023.data.AlbumRepository
 import com.example.misw4203moviles2023.data.model.AlbumModel
 import com.example.misw4203moviles2023.data.network.AlbumService
 import com.example.misw4203moviles2023.test.TestApplication
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertTrue
-import kotlinx.coroutines.test.StandardTestDispatcher
-import kotlinx.coroutines.test.TestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
@@ -18,9 +14,8 @@ import org.mockito.Mockito.mock
 import org.mockito.kotlin.whenever
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
-import retrofit2.Response
 
-@Config(application= TestApplication::class)
+@Config(application = TestApplication::class)
 @RunWith(RobolectricTestRunner::class)
 class AlbumRepositoryTest {
     private lateinit var repository: AlbumRepository
@@ -51,7 +46,7 @@ class AlbumRepositoryTest {
         // Given
         val albums = listOf(
             AlbumModel(1, "Album 1", "cover1.jpg", "2022-01-01", "", "", "", emptyList()),
-            AlbumModel(2, "Album 2", "cover2.jpg", "2022-02-01", "", "", "", emptyList())
+            AlbumModel(2, "Album 2", "cover2.jpg", "2022-02-01", "", "", "", emptyList()),
         )
         whenever(mockService.getAlbums()).thenReturn(albums)
 
@@ -90,4 +85,3 @@ class AlbumRepositoryTest {
         assertEquals(album, result)
     }
 }
-

@@ -1,34 +1,26 @@
+package com.example.misw4203moviles2023
+
 import android.app.Application
 import android.view.Gravity
-import androidx.appcompat.widget.Toolbar
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.ViewInteraction
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.DrawerActions
 import androidx.test.espresso.contrib.DrawerMatchers.isClosed
 import androidx.test.espresso.contrib.NavigationViewActions
-import androidx.test.espresso.matcher.BoundedMatcher
-import androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.example.misw4203moviles2023.R
 import com.example.misw4203moviles2023.ui.view.MainActivity
-import com.example.misw4203moviles2023.TestUtils.matchToolbarTitle
-import org.hamcrest.CoreMatchers.`is`
-import org.hamcrest.Description
-import org.hamcrest.Matcher
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-
 
 @RunWith(AndroidJUnit4::class)
 class TestNavigation {
     @get:Rule
     val activityTestRule = ActivityScenarioRule(
-        MainActivity::class.java
+        MainActivity::class.java,
     )
 
     @Test
@@ -38,7 +30,7 @@ class TestNavigation {
             .getString(R.string.menu_album_list)
         matchToolbarTitle(expectedViewTitle)
 
-        Thread.sleep(1000);
+        Thread.sleep(1000)
         // Open Drawer to click on navigation.
         onView(withId(R.id.drawer_layout))
             .check(matches(isClosed(Gravity.LEFT))) // Left Drawer should be closed.
@@ -53,7 +45,7 @@ class TestNavigation {
             .getString(R.string.menu_artist_list)
         matchToolbarTitle(expectedViewTitle)
 
-        Thread.sleep(1000);
+        Thread.sleep(1000)
         // Open Drawer to click on navigation.
         onView(withId(R.id.drawer_layout))
             .check(matches(isClosed(Gravity.LEFT))) // Left Drawer should be closed.
@@ -68,7 +60,7 @@ class TestNavigation {
             .getString(R.string.menu_collector_list)
         matchToolbarTitle(expectedViewTitle)
 
-        Thread.sleep(1000);
+        Thread.sleep(1000)
         // Open Drawer to click on navigation.
         onView(withId(R.id.drawer_layout))
             .check(matches(isClosed(Gravity.LEFT))) // Left Drawer should be closed.
@@ -83,7 +75,7 @@ class TestNavigation {
             .getString(R.string.menu_album_create)
         matchToolbarTitle(expectedViewTitle)
 
-        Thread.sleep(1000);
+        Thread.sleep(1000)
         // Open Drawer to click on navigation.
         onView(withId(R.id.drawer_layout))
             .check(matches(isClosed(Gravity.LEFT))) // Left Drawer should be closed.

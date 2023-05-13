@@ -29,7 +29,6 @@ class MainActivity : AppCompatActivity() {
 
         binding.appBarNavigationDrawer.toolbar.overflowIcon = null
 
-
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_navigation_drawer)

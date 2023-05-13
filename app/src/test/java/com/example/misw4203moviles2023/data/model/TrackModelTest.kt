@@ -1,7 +1,6 @@
 package com.example.misw4203moviles2023.data.model
 
 import org.junit.Assert.assertEquals
-import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class TrackModelTest {
@@ -12,7 +11,7 @@ class TrackModelTest {
         val track = TrackModel(
             id = 1,
             name = "Track Name",
-            duration = "3:30"
+            duration = "3:30",
         )
 
         // Assert that the properties of the object are set correctly
@@ -27,7 +26,7 @@ class TrackModelTest {
         val track = TrackModel(
             id = 1,
             name = "Track Name",
-            duration = "3:30"
+            duration = "3:30",
         )
 
         // Call the method under test

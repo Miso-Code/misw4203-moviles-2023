@@ -22,7 +22,8 @@ class RetrofitHelperTest {
         MockitoAnnotations.openMocks(this)
 
         // Define the behavior of the mock object
-        val url = okhttp3.HttpUrl.Builder().scheme("https").host("back-vynils.herokuapp.com").build()
+        val url =
+            okhttp3.HttpUrl.Builder().scheme("https").host("back-vynils.herokuapp.com").build()
         `when`(retrofit.baseUrl()).thenReturn(url)
         `when`(retrofit.converterFactories()).thenReturn(listOf(GsonConverterFactory.create()))
     }

@@ -17,7 +17,6 @@ import com.example.misw4203moviles2023.adapter.AlbumAdapter
 import com.example.misw4203moviles2023.adapter.OnItemClickListener
 import com.example.misw4203moviles2023.data.model.AlbumModel
 import com.example.misw4203moviles2023.databinding.FragmentAlbumListBinding
-import com.example.misw4203moviles2023.ui.viewModel.AlbumDetailViewModel
 import com.example.misw4203moviles2023.ui.viewModel.AlbumListViewModel
 
 class AlbumList(private val viewModel: AlbumListViewModel? = null) : Fragment() {

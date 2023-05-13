@@ -109,7 +109,7 @@ android {
         unitTests {
             returnDefaultValues = true
             includeAndroidResources = true
-            all{
+            all {
                 jvmArgs '-noverify'
             }
         }
@@ -126,7 +126,11 @@ dependencies {
 
 
     // Fragment
-    implementation "androidx.fragment:fragment-ktx:1.5.7"
+    implementation "androidx.fragment:fragment-ktx:1.6.0-alpha04"
+    //noinspection FragmentGradleConfiguration
+    implementation "androidx.fragment:fragment-testing:1.6.0-alpha04"
+    // 1.6.0-alpha04 fixes 1.5.0 bug Task :app:connectedDebugAndroidTest sitting forever on E2E tests https://stackoverflow.com/a/74955089
+
     // Activity
     implementation "androidx.activity:activity-ktx:1.7.1"
     // ViewModel
@@ -187,16 +191,12 @@ dependencies {
     // Testing Suspense Functions
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
 
-    // Testing Fragments
-    debugImplementation "androidx.fragment:fragment-testing:1.6.0-alpha04" // 1.6.0-alpha04 fixes 1.5.0 bug Task :app:connectedDebugAndroidTest sitting forever on E2E tests https://stackoverflow.com/a/74955089
-
     // Testing LiveData
     testImplementation "androidx.arch.core:core-testing:2.2.0"
 
     //E2E
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.5.1'
-    androidTestImplementation 'com.jakewharton.espresso:okhttp3-idling-resource:1.0.0'
 
 
     // AndroidJUnitRunner and JUnit Rules

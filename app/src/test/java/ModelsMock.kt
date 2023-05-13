@@ -2,6 +2,7 @@ import com.example.misw4203moviles2023.data.model.AlbumModel
 import com.example.misw4203moviles2023.data.model.TrackModel
 import org.mockito.Mockito
 
+@Suppress("LongParameterList")
 fun mockAlbumModel(
     id: Int,
     name: String,
@@ -26,7 +27,7 @@ fun mockAlbumModel(
 fun mockTrackModel(
     id: Int,
     name: String,
-    duration: String
+    duration: String,
 ): TrackModel {
     val track = Mockito.mock(TrackModel::class.java)
     Mockito.`when`(track.id).thenReturn(id)

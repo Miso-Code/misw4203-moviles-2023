@@ -17,7 +17,7 @@ class AlbumModelTest {
             description = "Album description",
             genre = "Rock",
             recordLabel = "Record label",
-            tracks = emptyList()
+            tracks = emptyList(),
         )
 
         // Assert that the properties of the object are set correctly
@@ -42,14 +42,15 @@ class AlbumModelTest {
             description = "Album description",
             genre = "Rock",
             recordLabel = "Record label",
-            tracks = emptyList()
+            tracks = emptyList(),
         )
 
         // Call the method under test
         val result = album.toString()
 
         // Assert that the result is in the expected format
-        val expected = "AlbumModel(id=1, name=Album Name, cover=https://example.com/album-cover.jpg, " +
+        val expected =
+            "AlbumModel(id=1, name=Album Name, cover=https://example.com/album-cover.jpg, " +
                 "releaseDate=2023-05-01, description=Album description, genre=Rock, " +
                 "recordLabel=Record label, tracks=[])"
         assertEquals(expected, result)

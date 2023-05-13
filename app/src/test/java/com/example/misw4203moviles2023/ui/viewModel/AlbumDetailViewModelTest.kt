@@ -3,10 +3,9 @@ package com.example.misw4203moviles2023.ui.viewModel
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.misw4203moviles2023.domain.album.GetAlbumById
 import com.example.misw4203moviles2023.test.TestApplication
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.test.runTest
 import mockAlbumModel
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -17,7 +16,7 @@ import org.mockito.MockitoAnnotations
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 
-@Config(application= TestApplication::class)
+@Config(application = TestApplication::class)
 @RunWith(RobolectricTestRunner::class)
 class AlbumDetailViewModelTest {
 
@@ -37,7 +36,7 @@ class AlbumDetailViewModelTest {
     }
 
     @Test
-    fun testOnCreate()= runTest {
+    fun testOnCreate() = runTest {
         val albumId = 1
         val releaseDate = "2023-05-09T10:00:00Z"
         val album = mockAlbumModel(

@@ -1,3 +1,5 @@
+package com.example.misw4203moviles2023
+
 import android.app.Application
 import android.view.View
 import android.widget.TextView
@@ -12,8 +14,6 @@ import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.example.misw4203moviles2023.R
-import com.example.misw4203moviles2023.TestUtils.matchToolbarTitle
 import com.example.misw4203moviles2023.ui.view.MainActivity
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.not
@@ -23,12 +23,11 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import java.util.Collections
 
-
 @RunWith(AndroidJUnit4::class)
 class TestAlbum {
     @get:Rule
     val activityTestRule = ActivityScenarioRule(
-        MainActivity::class.java
+        MainActivity::class.java,
     )
 
     @Test
@@ -41,7 +40,7 @@ class TestAlbum {
         matchToolbarTitle(expectedViewTitle)
 
         // onView(withId(R.id.progress_bar)).check(matches(isDisplayed())) // sometimes the bar is not visible because the list is loaded too fast
-        Thread.sleep(1000);
+        Thread.sleep(1000)
         onView(withId(R.id.progress_bar)).check(matches(not(isDisplayed())))
         onView(withId(R.id.album_list_recycler_view)).check(matches(isDisplayed()))
 
@@ -72,12 +71,12 @@ class TestAlbum {
             randomAlbumIndex = (0 until itemCount).random()
         }
 
-        if (randomAlbumIndex !=0){
+        if (randomAlbumIndex != 0) {
             onView(withId(R.id.album_list_recycler_view)).perform(
-                scrollToPosition<RecyclerView.ViewHolder>(randomAlbumIndex)
+                scrollToPosition<RecyclerView.ViewHolder>(randomAlbumIndex),
             )
             onView(withId(R.id.album_list_recycler_view)).perform(
-                actionOnItemAtPosition<RecyclerView.ViewHolder>(randomAlbumIndex, click())
+                actionOnItemAtPosition<RecyclerView.ViewHolder>(randomAlbumIndex, click()),
             )
 
             Thread.sleep(1000)
@@ -93,7 +92,7 @@ class TestAlbum {
 
                 val itemCount = recyclerView.adapter!!.itemCount
 
-                if(itemCount !=0){
+                if (itemCount != 0) {
                     onView(withId(R.id.albumTracks)).check(matches(isDisplayed()))
                 }
 

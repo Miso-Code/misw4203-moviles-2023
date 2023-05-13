@@ -10,4 +10,3 @@ class TestApplication : Application() {
         setTheme(R.style.Base_Theme_Misw4203moviles2023)
     }
 }
-

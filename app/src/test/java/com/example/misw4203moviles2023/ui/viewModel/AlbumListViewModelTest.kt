@@ -1,13 +1,11 @@
 package com.example.misw4203moviles2023.ui.viewModel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.example.misw4203moviles2023.domain.album.GetAlbumById
 import com.example.misw4203moviles2023.domain.album.GetAlbums
 import com.example.misw4203moviles2023.test.TestApplication
-import com.example.misw4203moviles2023.ui.view.AlbumList
 import kotlinx.coroutines.test.runTest
 import mockAlbumModel
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -18,7 +16,7 @@ import org.mockito.MockitoAnnotations
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 
-@Config(application= TestApplication::class)
+@Config(application = TestApplication::class)
 @RunWith(RobolectricTestRunner::class)
 class AlbumListViewModelTest {
 
@@ -38,18 +36,10 @@ class AlbumListViewModelTest {
     }
 
     @Test
-    fun testOnCreate()= runTest {
+    fun testOnCreate() = runTest {
         val albumId = 1
         val releaseDate = "2023-05-09T10:00:00Z"
-        val albums = listOf(mockAlbumModel(
-            albumId,
-            "Album Title2",
-            "Artist Name2",
-            releaseDate,
-            "https://example.com/album-cover.jpg",
-            "Metal",
-            "Album Studio",
-        ),
+        val albums = listOf(
             mockAlbumModel(
                 albumId,
                 "Album Title2",
@@ -58,7 +48,17 @@ class AlbumListViewModelTest {
                 "https://example.com/album-cover.jpg",
                 "Metal",
                 "Album Studio",
-            ))
+            ),
+            mockAlbumModel(
+                albumId,
+                "Album Title2",
+                "Artist Name2",
+                releaseDate,
+                "https://example.com/album-cover.jpg",
+                "Metal",
+                "Album Studio",
+            ),
+        )
 
         // Set up the mocked result
         `when`(viewModel.getAlbums()).thenReturn(albums)
