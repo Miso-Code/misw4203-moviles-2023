@@ -5,18 +5,21 @@ import com.example.misw4203moviles2023.data.model.AlbumModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class AlbumService {
+class AlbumService(apiClient: AlbumApiClient? = null) {
     private val retrofit = RetrofitHelper.getRetrofit()
+    private val defaultApiClient = retrofit.create(AlbumApiClient::class.java)
+    private val apiClient = apiClient ?: defaultApiClient
+
     suspend fun getAlbums(): List<AlbumModel> {
         return withContext(Dispatchers.IO) {
-            val response = retrofit.create(AlbumApiClient::class.java).getAllAlbums()
+            val response = apiClient.getAllAlbums()
             response.body() ?: emptyList()
         }
     }
 
     suspend fun getAlbumById(id: Int): AlbumModel {
         return withContext(Dispatchers.IO) {
-            val response = retrofit.create(AlbumApiClient::class.java).getAlbumById(id)
+            val response = apiClient.getAlbumById(id)
             response.body() ?: AlbumModel(0, "", "", "", "", "", "", emptyList())
         }
     }
