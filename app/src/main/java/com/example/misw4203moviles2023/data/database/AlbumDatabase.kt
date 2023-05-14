@@ -9,7 +9,7 @@ import com.example.misw4203moviles2023.data.database.entities.TrackEntity
 
 @Database(entities = [AlbumEntity::class, TrackEntity::class], version = 2, exportSchema = false)
 abstract class AlbumDatabase : RoomDatabase() {
-	abstract fun getAlbumsDao(): AlbumDao
+    abstract fun getAlbumsDao(): AlbumDao
 
-	abstract fun getTracksDao(): TrackDao
+    abstract fun getTracksDao(): TrackDao
 }

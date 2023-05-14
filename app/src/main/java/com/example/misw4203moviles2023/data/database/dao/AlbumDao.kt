@@ -11,17 +11,17 @@ import com.example.misw4203moviles2023.data.database.entities.AlbumWithTracksEnt
 @Dao
 interface AlbumDao {
 
-	@Transaction
-	@Query("SELECT * FROM album_table ORDER BY album_name DESC")
-	suspend fun getAllAlbums(): List<AlbumWithTracksEntity>
+    @Transaction
+    @Query("SELECT * FROM album_table ORDER BY album_name DESC")
+    suspend fun getAllAlbums(): List<AlbumWithTracksEntity>
 
-	@Insert(onConflict = OnConflictStrategy.REPLACE)
-	suspend fun insertAllAlbums(albums: List<AlbumEntity>)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAllAlbums(albums: List<AlbumEntity>)
 
-	@Query("Delete from  album_table")
-	suspend fun deleteAllAlbums()
+    @Query("Delete from  album_table")
+    suspend fun deleteAllAlbums()
 
-	@Transaction
-	@Query("SELECT * FROM album_table WHERE album_table.album_id = :id ")
-	suspend fun getAlbumById(id: Int): AlbumWithTracksEntity
+    @Transaction
+    @Query("SELECT * FROM album_table WHERE album_table.album_id = :id ")
+    suspend fun getAlbumById(id: Int): AlbumWithTracksEntity
 }

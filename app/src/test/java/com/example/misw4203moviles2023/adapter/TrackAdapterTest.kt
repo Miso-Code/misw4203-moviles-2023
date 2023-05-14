@@ -4,7 +4,6 @@ import android.content.Context
 import android.widget.FrameLayout
 import androidx.test.core.app.ApplicationProvider
 import com.example.misw4203moviles2023.mockTrack
-import com.example.misw4203moviles2023.mockTrackModel
 import com.example.misw4203moviles2023.test.TestApplication
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.core.IsInstanceOf.instanceOf

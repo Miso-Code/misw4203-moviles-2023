@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.misw4203moviles2023.R
-import com.example.misw4203moviles2023.data.model.AlbumModel
 import com.example.misw4203moviles2023.databinding.AlbumRowBinding
 import com.example.misw4203moviles2023.domain.album.model.Album
 

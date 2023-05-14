@@ -4,7 +4,7 @@ import android.content.Context
 import com.example.misw4203moviles2023.data.AlbumRepository
 import com.example.misw4203moviles2023.domain.album.model.Album
 
-class GetAlbumById (context: Context) {
+class GetAlbumById(context: Context) {
     private val repository = AlbumRepository(null, context)
 
     suspend operator fun invoke(id: Int): Album? {

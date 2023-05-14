@@ -7,15 +7,15 @@ import com.example.misw4203moviles2023.domain.album.model.Album
 
 @Entity(tableName = "album_table")
 data class AlbumEntity(
-	@PrimaryKey(autoGenerate = true)
-	@ColumnInfo(name = "album_id")
-	val id: Int = 0,
-	@ColumnInfo(name = "album_name") val name: String,
-	@ColumnInfo(name = "album_cover") val cover: String,
-	@ColumnInfo(name = "album_release_date") var releaseDate: String,
-	@ColumnInfo(name = "album_description") val description: String,
-	@ColumnInfo(name = "album_genre") val genre: String,
-	@ColumnInfo(name = "album_record_label") val recordLabel: String,
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "album_id")
+    val id: Int = 0,
+    @ColumnInfo(name = "album_name") val name: String,
+    @ColumnInfo(name = "album_cover") val cover: String,
+    @ColumnInfo(name = "album_release_date") var releaseDate: String,
+    @ColumnInfo(name = "album_description") val description: String,
+    @ColumnInfo(name = "album_genre") val genre: String,
+    @ColumnInfo(name = "album_record_label") val recordLabel: String,
 )
 
 fun Album.toDatabase() = AlbumEntity(id, name, cover, releaseDate, description, genre, recordLabel)

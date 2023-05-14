@@ -8,14 +8,14 @@ import javax.annotation.Nullable
 
 @Entity(tableName = "track_table")
 data class TrackEntity(
-	@PrimaryKey(autoGenerate = true)
-	@ColumnInfo(name = "track_id")
-	val id: Int,
-	@ColumnInfo(name = "track_name") val name: String,
-	@ColumnInfo(name = "track_duration") val duration: String,
-	@Nullable()
-	@ColumnInfo(name = "track_album_id")
-	val albumId: Int?,
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "track_id")
+    val id: Int,
+    @ColumnInfo(name = "track_name") val name: String,
+    @ColumnInfo(name = "track_duration") val duration: String,
+    @Nullable()
+    @ColumnInfo(name = "track_album_id")
+    val albumId: Int?,
 )
 
 fun Track.toDatabase(albumId: Int?) = TrackEntity(id, name, duration, albumId)

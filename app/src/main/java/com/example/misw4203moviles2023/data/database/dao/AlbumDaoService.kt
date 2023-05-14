@@ -11,20 +11,20 @@ private const val DB_NAME = "misw4203moviles2023"
 
 class AlbumDaoService(private val context: Context) {
 
-	private val provideRoom =
-		Room.databaseBuilder(context.applicationContext, AlbumDatabase::class.java, DB_NAME).build()
+    private val provideRoom =
+        Room.databaseBuilder(context.applicationContext, AlbumDatabase::class.java, DB_NAME).build()
 
-	suspend fun getAlbums(): List<AlbumWithTracksEntity> {
-		return withContext(Dispatchers.IO) {
-			val response = provideRoom.getAlbumsDao().getAllAlbums()
-			response
-		}
-	}
+    suspend fun getAlbums(): List<AlbumWithTracksEntity> {
+        return withContext(Dispatchers.IO) {
+            val response = provideRoom.getAlbumsDao().getAllAlbums()
+            response
+        }
+    }
 
-	suspend fun getAlbumById(id: Int): AlbumWithTracksEntity {
-		return withContext(Dispatchers.IO) {
-			val response = provideRoom.getAlbumsDao().getAlbumById(id)
-			response
-		}
-	}
+    suspend fun getAlbumById(id: Int): AlbumWithTracksEntity {
+        return withContext(Dispatchers.IO) {
+            val response = provideRoom.getAlbumsDao().getAlbumById(id)
+            response
+        }
+    }
 }

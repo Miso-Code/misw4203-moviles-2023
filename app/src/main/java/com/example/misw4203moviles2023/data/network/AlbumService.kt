@@ -23,7 +23,6 @@ class AlbumService(apiClient: AlbumApiClient? = null) {
         }
     }
 
-
     suspend fun getAlbumById(id: Int): AlbumModel? {
         return withContext(Dispatchers.IO) {
             try {

@@ -30,7 +30,7 @@ class AlbumRepositoryTest {
     fun setUp() {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         mockService = mock(AlbumService::class.java)
-        repository = AlbumRepository(mockService,context)
+        repository = AlbumRepository(mockService, context)
     }
 
     @Test
