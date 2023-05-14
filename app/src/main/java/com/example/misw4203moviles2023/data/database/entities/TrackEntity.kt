@@ -4,7 +4,6 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.misw4203moviles2023.domain.album.model.Track
-import javax.annotation.Nullable
 
 @Entity(tableName = "track_table")
 data class TrackEntity(
@@ -13,9 +12,7 @@ data class TrackEntity(
     val id: Int,
     @ColumnInfo(name = "track_name") val name: String,
     @ColumnInfo(name = "track_duration") val duration: String,
-    @Nullable()
-    @ColumnInfo(name = "track_album_id")
-    val albumId: Int?,
+    @ColumnInfo(name = "track_album_id") val albumId: Int?,
 )
 
 fun Track.toDatabase(albumId: Int?) = TrackEntity(id, name, duration, albumId)

@@ -47,6 +47,10 @@ spotless {
     }
 }
 
+kapt {
+    correctErrorTypes true
+}
+
 def localProperties = new Properties()
 localProperties.load(new FileInputStream(rootProject.file("local.properties")))
 
@@ -128,11 +132,10 @@ dependencies {
     implementation 'com.google.android.material:material:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
-
     // Fragment
     implementation "androidx.fragment:fragment-ktx:1.6.0-alpha04"
     //noinspection FragmentGradleConfiguration
-    debugImplementation "androidx.fragment:fragment-testing:1.6.0-alpha04"
+    implementation "androidx.fragment:fragment-testing:1.6.0-alpha04"
     // 1.6.0-alpha04 fixes 1.5.0 bug Task :app:connectedDebugAndroidTest sitting forever on E2E tests https://stackoverflow.com/a/74955089
 
     // Activity
@@ -197,6 +200,7 @@ dependencies {
 
     // Testing Suspense Functions
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
+
 
     // Testing LiveData
     testImplementation "androidx.arch.core:core-testing:2.2.0"
