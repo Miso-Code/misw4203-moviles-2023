@@ -1,20 +1,22 @@
 package com.example.misw4203moviles2023.ui.viewModel
 
+import android.app.Application
+import android.content.Context
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.misw4203moviles2023.data.model.AlbumModel
 import com.example.misw4203moviles2023.domain.album.GetAlbums
+import com.example.misw4203moviles2023.domain.album.model.Album
 import kotlinx.coroutines.launch
 
 private const val TIMESTAMPT_REGEX_END = 10
 
-class AlbumListViewModel : ViewModel() {
-
-    val albumModel = MutableLiveData<List<AlbumModel>?>()
+class AlbumListViewModel(application: Application) : AndroidViewModel(application) {
+    private val applicationContext: Context = application.applicationContext
+    val albumModel = MutableLiveData<List<Album>?>()
     private val isLoading = MutableLiveData<Boolean>()
 
-    var getAlbums = GetAlbums()
+    var getAlbums = GetAlbums(applicationContext)
     fun onCreate() {
         viewModelScope.launch {
             isLoading.postValue(true)

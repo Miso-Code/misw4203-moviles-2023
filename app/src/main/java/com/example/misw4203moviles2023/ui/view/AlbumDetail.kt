@@ -19,7 +19,6 @@ import com.example.misw4203moviles2023.databinding.FragmentAlbumDetailBinding
 import com.example.misw4203moviles2023.ui.viewModel.AlbumDetailViewModel
 
 class AlbumDetail(private val viewModel: AlbumDetailViewModel? = null) : Fragment() {
-
     companion object {
         fun newInstance() = AlbumDetail()
     }

@@ -1,7 +1,9 @@
 package com.example.misw4203moviles2023.data
 
+import androidx.test.platform.app.InstrumentationRegistry
 import com.example.misw4203moviles2023.data.model.AlbumModel
 import com.example.misw4203moviles2023.data.network.AlbumService
+import com.example.misw4203moviles2023.domain.album.model.Album
 import com.example.misw4203moviles2023.test.TestApplication
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertTrue
@@ -24,9 +26,11 @@ class AlbumRepositoryTest {
     private lateinit var mockService: AlbumService
 
     @Before
+    @Test
     fun setUp() {
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
         mockService = mock(AlbumService::class.java)
-        repository = AlbumRepository(mockService)
+        repository = AlbumRepository(mockService, context)
     }
 
     @Test
@@ -35,7 +39,7 @@ class AlbumRepositoryTest {
         whenever(mockService.getAlbums()).thenReturn(emptyList())
 
         // When
-        val result = repository.getAllAlbums()
+        val result = repository.getAllAlbumsFromApi()
 
         // Then
         assertTrue(result.isEmpty())
@@ -44,14 +48,19 @@ class AlbumRepositoryTest {
     @Test
     fun `getAllAlbums should return list of albums when api returns non-null response`() = runTest {
         // Given
-        val albums = listOf(
+        val albumsModel = listOf(
             AlbumModel(1, "Album 1", "cover1.jpg", "2022-01-01", "", "", "", emptyList()),
             AlbumModel(2, "Album 2", "cover2.jpg", "2022-02-01", "", "", "", emptyList()),
         )
-        whenever(mockService.getAlbums()).thenReturn(albums)
+        whenever(mockService.getAlbums()).thenReturn(albumsModel)
+
+        val albums = listOf(
+            Album(1, "Album 1", "cover1.jpg", "2022-01-01", "", "", "", emptyList()),
+            Album(2, "Album 2", "cover2.jpg", "2022-02-01", "", "", "", emptyList()),
+        )
 
         // When
-        val result = repository.getAllAlbums()
+        val result = repository.getAllAlbumsFromApi()
 
         // Then
         assertEquals(albums, result)
@@ -61,11 +70,12 @@ class AlbumRepositoryTest {
     fun `getAlbumById should return default album when api returns null`() = runTest {
         // Given
         val id = 1
-        val defaultAlbum = AlbumModel(0, "", "", "", "", "", "", emptyList())
-        whenever(mockService.getAlbumById(id)).thenReturn(defaultAlbum)
+        val defaultAlbumModel = AlbumModel(0, "", "", "", "", "", "", emptyList())
+        whenever(mockService.getAlbumById(id)).thenReturn(defaultAlbumModel)
 
         // When
-        val result = repository.getAlbumById(id)
+        val result = repository.getAlbumByIdFromApi(id)
+        val defaultAlbum = Album(0, "", "", "", "", "", "", emptyList())
 
         // Then
         assertEquals(defaultAlbum, result)
@@ -75,11 +85,13 @@ class AlbumRepositoryTest {
     fun `getAlbumById should return album when api returns non-null response`() = runTest {
         // Given
         val id = 1
-        val album = AlbumModel(1, "Album 1", "cover1.jpg", "2022-01-01", "", "", "", emptyList())
-        whenever(mockService.getAlbumById(id)).thenReturn(album)
+        val albumModel =
+            AlbumModel(1, "Album 1", "cover1.jpg", "2022-01-01", "", "", "", emptyList())
+        whenever(mockService.getAlbumById(id)).thenReturn(albumModel)
 
         // When
-        val result = repository.getAlbumById(id)
+        val album = Album(1, "Album 1", "cover1.jpg", "2022-01-01", "", "", "", emptyList())
+        val result = repository.getAlbumByIdFromApi(id)
 
         // Then
         assertEquals(album, result)

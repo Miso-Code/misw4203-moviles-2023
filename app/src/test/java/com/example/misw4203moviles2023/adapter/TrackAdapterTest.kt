@@ -3,8 +3,8 @@ package com.example.misw4203moviles2023.adapter
 import android.content.Context
 import android.widget.FrameLayout
 import androidx.test.core.app.ApplicationProvider
+import com.example.misw4203moviles2023.mockTrack
 import com.example.misw4203moviles2023.test.TestApplication
-import mockTrackModel
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.core.IsInstanceOf.instanceOf
 import org.junit.Assert.assertEquals
@@ -25,12 +25,12 @@ class TrackAdapterTest {
     fun setUp() {
         context = ApplicationProvider.getApplicationContext()
         val trackList = listOf(
-            mockTrackModel(
+            mockTrack(
                 1,
                 "Track 1",
                 "3:00",
             ),
-            mockTrackModel(
+            mockTrack(
                 2,
                 "Track 2",
                 "4:00",

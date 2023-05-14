@@ -4,9 +4,9 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.fragment.app.FragmentFactory
 import androidx.fragment.app.testing.launchFragment
 import androidx.lifecycle.MutableLiveData
+import com.example.misw4203moviles2023.mockAlbum
 import com.example.misw4203moviles2023.test.TestApplication
 import com.example.misw4203moviles2023.ui.viewModel.AlbumListViewModel
-import mockAlbumModel
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
@@ -33,7 +33,7 @@ class AlbumListTest {
     @Test
     fun testAlbumListViewModel() {
         val albumList = listOf(
-            mockAlbumModel(
+            mockAlbum(
                 1,
                 "Album Name",
                 "Album Description",
@@ -42,7 +42,7 @@ class AlbumListTest {
                 "Album Cover",
                 "Album recordLabel",
             ),
-            mockAlbumModel(
+            mockAlbum(
                 2,
                 "Album Name",
                 "Album Description",
