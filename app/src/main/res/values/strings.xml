@@ -19,15 +19,19 @@
 
     <string name="menu_profile">Perfil</string>
     <string name="menu_album_list">Catalogo de álbumes</string>
-    <string name="menu_artist_list">Catalogo de artistas</string>
+    <string name="menu_performer_list">Catalogo de artistas</string>
     <string name="menu_collector_list">Coleccionistas</string>
     <string name="menu_album_create">Crear álbum</string>
-    <string name="menu_artist_create">Crear artista</string>
+    <string name="menu_performer_create">Crear artista</string>
     <string name="menu_my_collections">Mis colecciones</string>
 
     <string name="tracks">Tracks</string>
     <string name="track_duration">02:00</string>
     <string name="track_name">Nombre del track</string>
+
+    <string name="performer_name">Nombre del artista</string>
+    <string name="performer_description">Descripción del artista</string>
+    <string name="performer_image">Foto del artista</string>
 
 
 

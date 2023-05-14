@@ -12,9 +12,9 @@
             android:icon="@drawable/ic_album"
             android:title="@string/menu_album_list" />
         <item
-            android:id="@+id/artistList"
+            android:id="@+id/performerList"
             android:icon="@drawable/ic_artist"
-            android:title="@string/menu_artist_list" />
+            android:title="@string/menu_performer_list" />
         <item
             android:id="@+id/collectorList"
             android:icon="@drawable/ic_users"
@@ -24,9 +24,9 @@
             android:icon="@drawable/ic_album"
             android:title="@string/menu_album_create" />
         <item
-            android:id="@+id/artistCreate"
+            android:id="@+id/performerCreate"
             android:icon="@drawable/ic_artist"
-            android:title="@string/menu_artist_create" />
+            android:title="@string/menu_performer_create" />
         <item
             android:id="@+id/myCollectionList"
             android:icon="@drawable/ic_my_collections"
