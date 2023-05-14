@@ -3,6 +3,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentFactory
 import androidx.fragment.app.testing.launchFragment
 import androidx.lifecycle.MutableLiveData
+import com.example.misw4203moviles2023.mockAlbum
 import com.example.misw4203moviles2023.test.TestApplication
 import com.example.misw4203moviles2023.ui.view.AlbumDetail
 import com.example.misw4203moviles2023.ui.viewModel.AlbumDetailViewModel
@@ -32,7 +33,7 @@ class AlbumDetailTest {
 
     @Test
     fun testAlbumDetailViewModel() {
-        val albumModel = mockAlbumModel(
+        val albumModel = mockAlbum(
             1,
             "Album Name",
             "Album Description",

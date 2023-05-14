@@ -1,10 +1,11 @@
 package com.example.misw4203moviles2023.ui.viewModel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.test.platform.app.InstrumentationRegistry
 import com.example.misw4203moviles2023.domain.album.GetAlbums
+import com.example.misw4203moviles2023.mockAlbum
 import com.example.misw4203moviles2023.test.TestApplication
 import kotlinx.coroutines.test.runTest
-import mockAlbumModel
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
@@ -31,7 +32,8 @@ class AlbumListViewModelTest {
     @Before
     fun setUp() {
         MockitoAnnotations.openMocks(this)
-        viewModel = AlbumListViewModel()
+        val app = InstrumentationRegistry.getInstrumentation().targetContext.applicationContext as TestApplication
+        viewModel = AlbumListViewModel(app)
         viewModel.getAlbums = getAlbums
     }
 
@@ -40,7 +42,7 @@ class AlbumListViewModelTest {
         val albumId = 1
         val releaseDate = "2023-05-09T10:00:00Z"
         val albums = listOf(
-            mockAlbumModel(
+            mockAlbum(
                 albumId,
                 "Album Title2",
                 "Artist Name2",
@@ -49,7 +51,7 @@ class AlbumListViewModelTest {
                 "Metal",
                 "Album Studio",
             ),
-            mockAlbumModel(
+            mockAlbum(
                 albumId,
                 "Album Title2",
                 "Artist Name2",

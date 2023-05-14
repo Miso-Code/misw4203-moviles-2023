@@ -3,8 +3,8 @@ package com.example.misw4203moviles2023.adapter
 import android.content.Context
 import android.widget.FrameLayout
 import androidx.test.core.app.ApplicationProvider
+import com.example.misw4203moviles2023.mockAlbum
 import com.example.misw4203moviles2023.test.TestApplication
-import mockAlbumModel
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.core.IsInstanceOf.instanceOf
 import org.junit.Assert.assertEquals
@@ -25,7 +25,7 @@ class AlbumAdapterTest {
     fun setUp() {
         context = ApplicationProvider.getApplicationContext()
         val albumList = listOf(
-            mockAlbumModel(
+            mockAlbum(
                 1,
                 "Album 1",
                 "https://example.com/album1.jpg",
@@ -34,7 +34,7 @@ class AlbumAdapterTest {
                 "Rock",
                 "Record Label 1",
             ),
-            mockAlbumModel(
+            mockAlbum(
                 2,
                 "Album 2",
                 "https://example.com/album2.jpg",
