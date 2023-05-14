@@ -1,10 +1,14 @@
 package com.example.misw4203moviles2023.domain.album
 
+import android.content.Context
 import com.example.misw4203moviles2023.data.AlbumRepository
-import com.example.misw4203moviles2023.data.model.AlbumModel
+import com.example.misw4203moviles2023.domain.album.model.Album
 
-class GetAlbumById {
-    private val repository = AlbumRepository()
+class GetAlbumById (context: Context) {
+    private val repository = AlbumRepository(null, context)
 
-    suspend operator fun invoke(id: Int): AlbumModel = repository.getAlbumById(id)
+    suspend operator fun invoke(id: Int): Album? {
+        val album = repository.getAlbumByIdFromApi(id)
+        return if (album !== null) album else repository.getAlbumByIdFromDb(id)
+    }
 }

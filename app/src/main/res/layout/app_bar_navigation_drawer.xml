@@ -12,17 +12,17 @@
         android:layout_height="wrap_content"
         android:theme="@style/Theme.Misw4203moviles2023.AppBarOverlay">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:layout_anchor="@+id/appBarLayout"
+            app:layout_anchorGravity="center"
+            app:popupTheme="@style/Theme.Misw4203moviles2023.PopupOverlay" />
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <include layout="@layout/content_navigation_drawer" />
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        app:layout_anchor="@+id/appBarLayout"
-        app:layout_anchorGravity="center"
-        app:popupTheme="@style/Theme.Misw4203moviles2023.PopupOverlay" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

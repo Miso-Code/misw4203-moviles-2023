@@ -8,12 +8,13 @@ import com.bumptech.glide.Glide
 import com.example.misw4203moviles2023.R
 import com.example.misw4203moviles2023.data.model.AlbumModel
 import com.example.misw4203moviles2023.databinding.AlbumRowBinding
+import com.example.misw4203moviles2023.domain.album.model.Album
 
 interface OnItemClickListener {
-    fun onItemClick(position: Int, album: AlbumModel)
+    fun onItemClick(position: Int, album: Album)
 }
 
-class AlbumAdapter(private val context: Context, private val albumList: List<AlbumModel>) :
+class AlbumAdapter(private val context: Context, private val albumList: List<Album>) :
     RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder>() {
 
     private var onItemClickListener: OnItemClickListener? = null
@@ -21,7 +22,7 @@ class AlbumAdapter(private val context: Context, private val albumList: List<Alb
     inner class AlbumViewHolder(private val binding: AlbumRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(album: AlbumModel) {
+        fun bind(album: Album) {
             binding.albumName.text = album.name
             binding.albumReleaseDate.text = album.releaseDate
             Glide.with(context).load(album.cover).placeholder(R.drawable.ic_album)

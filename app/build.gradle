@@ -6,11 +6,15 @@ plugins {
     id 'io.gitlab.arturbosch.detekt' version '1.18.1'
     id 'com.diffplug.spotless' version '6.18.0'
     id 'androidx.navigation.safeargs.kotlin'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 apply plugin: 'io.gitlab.arturbosch.detekt'
 apply plugin: "org.jlleitschuh.gradle.ktlint-idea"
 apply plugin: 'com.diffplug.spotless'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 detekt {
     toolVersion = "1.18.1"
@@ -61,12 +65,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '17'
     }
 
     buildFeatures {
@@ -128,7 +132,7 @@ dependencies {
     // Fragment
     implementation "androidx.fragment:fragment-ktx:1.6.0-alpha04"
     //noinspection FragmentGradleConfiguration
-    implementation "androidx.fragment:fragment-testing:1.6.0-alpha04"
+    debugImplementation "androidx.fragment:fragment-testing:1.6.0-alpha04"
     // 1.6.0-alpha04 fixes 1.5.0 bug Task :app:connectedDebugAndroidTest sitting forever on E2E tests https://stackoverflow.com/a/74955089
 
     // Activity
@@ -140,6 +144,9 @@ dependencies {
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
     implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+    //Room
+    implementation "androidx.room:room-ktx:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
     //Coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'

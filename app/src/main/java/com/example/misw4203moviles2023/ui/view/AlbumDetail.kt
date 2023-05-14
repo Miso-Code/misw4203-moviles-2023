@@ -1,6 +1,7 @@
 package com.example.misw4203moviles2023.ui.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,7 +20,6 @@ import com.example.misw4203moviles2023.databinding.FragmentAlbumDetailBinding
 import com.example.misw4203moviles2023.ui.viewModel.AlbumDetailViewModel
 
 class AlbumDetail(private val viewModel: AlbumDetailViewModel? = null) : Fragment() {
-
     companion object {
         fun newInstance() = AlbumDetail()
     }
