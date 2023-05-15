@@ -29,22 +29,17 @@ class MainActivity : AppCompatActivity() {
 
         binding.appBarNavigationDrawer.toolbar.overflowIcon = null
 
-        /*binding.appBarNavigationDrawer.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }*/
-
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_navigation_drawer)
-        // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
 
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.albumList,
-                R.id.artistList,
+                R.id.performerList,
                 R.id.collectorList,
+                R.id.albumCreate,
             ),
             drawerLayout,
         )
@@ -61,8 +56,9 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.albumList -> supportActionBar?.setTitle(R.string.menu_album_list)
-            R.id.artistList -> supportActionBar?.setTitle(R.string.menu_artist_list)
+            R.id.performerList -> supportActionBar?.setTitle(R.string.menu_performer_list)
             R.id.collectorList -> supportActionBar?.setTitle(R.string.menu_collector_list)
+            R.id.albumCreate -> supportActionBar?.setTitle(R.string.menu_album_create)
         }
         return super.onOptionsItemSelected(item)
     }

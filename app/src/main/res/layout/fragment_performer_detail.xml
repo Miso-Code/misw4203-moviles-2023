@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/side_nav_bar"
+    android:gravity="top"
+    android:orientation="vertical"
+    tools:context=".ui.view.PerformerDetail">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/activity_horizontal_margin_content"
+            android:paddingTop="@dimen/activity_vertical_margin_content"
+            android:paddingRight="@dimen/activity_horizontal_margin_content"
+            android:paddingBottom="@dimen/activity_vertical_margin_content"
+            android:orientation="vertical">
+
+            <ProgressBar
+                android:id="@+id/progress_bar_performer_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/performerDetailImageView"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:contentDescription="@string/nav_header_desc"
+                android:paddingTop="@dimen/nav_header_vertical_spacing"
+                app:srcCompat="@drawable/ic_artist" />
+
+            <TextView
+                android:id="@+id/performerDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/performer_description" />
+
+            <TextView
+                android:id="@+id/performerAlbums"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:paddingTop="24dp"
+                android:text="@string/albums" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/performer_list_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="vertical"
+                android:padding="8dp"
+                android:clipToPadding="false" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

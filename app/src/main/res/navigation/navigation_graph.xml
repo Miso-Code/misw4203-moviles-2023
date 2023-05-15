@@ -22,11 +22,11 @@
         android:id="@+id/albumDetail"
         android:name="com.example.misw4203moviles2023.ui.view.AlbumDetail"
         android:label="fragment_album_detail"
-        tools:layout="@layout/fragment_album_detail" >
+        tools:layout="@layout/fragment_album_detail">
         <argument
             android:name="albumId"
-            app:argType="integer"
-            android:defaultValue="-1" />
+            android:defaultValue="-1"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/albumCreate"
@@ -34,19 +34,35 @@
         android:label="fragment_album_create"
         tools:layout="@layout/fragment_album_create" />
     <fragment
-        android:id="@+id/artistList"
-        android:name="com.example.misw4203moviles2023.ui.view.ArtistList"
-        android:label="fragment_artist_list"
-        tools:layout="@layout/fragment_artist_list">
+        android:id="@+id/performerList"
+        android:name="com.example.misw4203moviles2023.ui.view.PerformerList"
+        android:label="fragment_performer_list"
+        tools:layout="@layout/fragment_performer_list">
         <action
-            android:id="@+id/action_artistList_to_artistDetail"
-            app:destination="@id/artistDetail" />
+            android:id="@+id/action_performerList_to_performerDetail"
+            app:destination="@id/performerDetail">
+            <argument
+                android:name="performerId"
+                app:argType="integer" />
+        </action>
     </fragment>
     <fragment
-        android:id="@+id/artistDetail"
-        android:name="com.example.misw4203moviles2023.ui.view.ArtistDetail"
-        android:label="fragment_artist_detail"
-        tools:layout="@layout/fragment_artist_detail" />
+        android:id="@+id/performerDetail"
+        android:name="com.example.misw4203moviles2023.ui.view.PerformerDetail"
+        android:label="fragment_performer_detail"
+        tools:layout="@layout/fragment_performer_detail">
+        <argument
+            android:name="performerId"
+            android:defaultValue="-1"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_performerDetail_to_albumDetail"
+            app:destination="@id/albumDetail">
+            <argument
+                android:name="albumId"
+                app:argType="integer" />
+        </action>
+    </fragment>
     <fragment
         android:id="@+id/collectorList"
         android:name="com.example.misw4203moviles2023.ui.view.CollectorList"
@@ -54,13 +70,22 @@
         tools:layout="@layout/fragment_collector_list">
         <action
             android:id="@+id/action_collectorList_to_collectorDetail"
-            app:destination="@id/collectorDetail" />
+            app:destination="@id/collectorDetail">
+            <argument
+                android:name="collectorId"
+                app:argType="integer" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/collectorDetail"
         android:name="com.example.misw4203moviles2023.ui.view.CollectorDetail"
         android:label="fragment_collector_detail"
-        tools:layout="@layout/fragment_collector_detail" />
+        tools:layout="@layout/fragment_collector_detail">
+        <argument
+            android:name="collectorId"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
     <fragment
         android:id="@+id/albumAddTrack"
         android:name="com.example.misw4203moviles2023.ui.view.AlbumAddTrack"

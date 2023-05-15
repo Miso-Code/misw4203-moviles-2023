@@ -15,11 +15,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.misw4203moviles2023.R
 import com.example.misw4203moviles2023.adapter.AlbumAdapter
 import com.example.misw4203moviles2023.adapter.OnItemClickListener
-import com.example.misw4203moviles2023.data.model.AlbumModel
 import com.example.misw4203moviles2023.databinding.FragmentAlbumListBinding
+import com.example.misw4203moviles2023.domain.album.model.Album
 import com.example.misw4203moviles2023.ui.viewModel.AlbumListViewModel
 
-class AlbumList : Fragment() {
+class AlbumList(private val viewModel: AlbumListViewModel? = null) : Fragment() {
 
     companion object {
         fun newInstance() = AlbumList()
@@ -29,7 +29,7 @@ class AlbumList : Fragment() {
     private lateinit var albumAdapter: AlbumAdapter
     private lateinit var albumLayoutManager: LinearLayoutManager
 
-    private lateinit var viewModel: AlbumListViewModel
+    private lateinit var _viewModel: AlbumListViewModel
     private var _binding: FragmentAlbumListBinding? = null
     private val binding get() = _binding!!
 
@@ -49,8 +49,8 @@ class AlbumList : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this)[AlbumListViewModel::class.java]
-        viewModel.onCreate()
+        _viewModel = ViewModelProvider(this)[AlbumListViewModel::class.java]
+        _viewModel.onCreate()
 
         progressBar = binding.progressBar
 
@@ -59,10 +59,10 @@ class AlbumList : Fragment() {
         albumRecyclerView.layoutManager = albumLayoutManager
         albumRecyclerView.visibility = View.GONE
         progressBar.visibility = View.VISIBLE
-        viewModel.albumModel.observe(viewLifecycleOwner) {
+        _viewModel.albumModel.observe(viewLifecycleOwner) {
             albumAdapter = AlbumAdapter(requireContext(), it ?: emptyList())
             albumAdapter.setOnItemClickListener(object : OnItemClickListener {
-                override fun onItemClick(position: Int, album: AlbumModel) {
+                override fun onItemClick(position: Int, album: Album) {
                     AlbumListDirections.actionAlbumListToAlbumDetail(album.id).also { action ->
                         view.findNavController().navigate(action)
                     }
@@ -76,7 +76,7 @@ class AlbumList : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        actionBar = (activity as AppCompatActivity?)!!.supportActionBar
+        actionBar = (activity as? AppCompatActivity)?.supportActionBar
         actionBar?.title = getString(R.string.menu_album_list)
     }
 

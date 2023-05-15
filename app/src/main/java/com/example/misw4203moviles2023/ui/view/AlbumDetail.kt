@@ -18,8 +18,7 @@ import com.example.misw4203moviles2023.adapter.TrackAdapter
 import com.example.misw4203moviles2023.databinding.FragmentAlbumDetailBinding
 import com.example.misw4203moviles2023.ui.viewModel.AlbumDetailViewModel
 
-class AlbumDetail : Fragment() {
-
+class AlbumDetail(private val viewModel: AlbumDetailViewModel? = null) : Fragment() {
     companion object {
         fun newInstance() = AlbumDetail()
     }
@@ -28,7 +27,7 @@ class AlbumDetail : Fragment() {
     private lateinit var trackAdapter: TrackAdapter
     private lateinit var trackLayoutManager: LinearLayoutManager
 
-    private lateinit var viewModel: AlbumDetailViewModel
+    private lateinit var _viewModel: AlbumDetailViewModel
 
     private var _binding: FragmentAlbumDetailBinding? = null
     private val binding get() = _binding!!
@@ -50,8 +49,8 @@ class AlbumDetail : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this)[AlbumDetailViewModel::class.java]
-        viewModel.onCreate(args.albumId)
+        _viewModel = viewModel ?: ViewModelProvider(this).get(AlbumDetailViewModel::class.java)
+        _viewModel.onCreate(args.albumId)
 
         progressBar = binding.progressBarAlbumDetail
 
@@ -67,7 +66,7 @@ class AlbumDetail : Fragment() {
         binding.albumTracks.visibility = View.GONE
         binding.albumDetailImageView.visibility = View.GONE
 
-        viewModel.albumModel.observe(viewLifecycleOwner) {
+        _viewModel.albumModel.observe(viewLifecycleOwner) {
             if (it?.tracks?.isEmpty() != true) {
                 binding.albumTracks.visibility = View.VISIBLE
             }
@@ -97,7 +96,7 @@ class AlbumDetail : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        actionBar = (activity as AppCompatActivity?)!!.supportActionBar
+        actionBar = (activity as? AppCompatActivity)?.supportActionBar
         actionBar?.title = "Cargando..."
     }
 }

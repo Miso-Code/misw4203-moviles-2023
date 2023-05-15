@@ -2,12 +2,17 @@
     <string name="app_name">Misw4203-moviles-2023</string>
     <string name="hello">Misw4203-moviles-2023</string>
 
+    <string name="albums">Álbumes</string>
     <string name="album_name">Álbum</string>
     <string name="album_cover">Portada del álbum</string>
     <string name="album_release_date">Fecha de lanzamiento</string>
     <string name="album_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
     <string name="album_genre">Género del álbum: Género</string>
     <string name="album_record_label">Nombre de la Discografía</string>
+
+    <string name="collector_name">Nombre del coleccionista</string>
+    <string name="collector_telephone">Nombre del coleccionista</string>
+    <string name="collector_email">Nombre del coleccionista</string>
 
     <string name="title_activity_navigation_drawer">NavigationDrawer</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -19,15 +24,19 @@
 
     <string name="menu_profile">Perfil</string>
     <string name="menu_album_list">Catalogo de álbumes</string>
-    <string name="menu_artist_list">Catalogo de artistas</string>
+    <string name="menu_performer_list">Catalogo de artistas</string>
     <string name="menu_collector_list">Coleccionistas</string>
     <string name="menu_album_create">Crear álbum</string>
-    <string name="menu_artist_create">Crear artista</string>
+    <string name="menu_performer_create">Crear artista</string>
     <string name="menu_my_collections">Mis colecciones</string>
 
     <string name="tracks">Tracks</string>
     <string name="track_duration">02:00</string>
     <string name="track_name">Nombre del track</string>
+
+    <string name="performer_name">Nombre del artista</string>
+    <string name="performer_description">Descripción del artista</string>
+    <string name="performer_image">Foto del artista</string>
 
 
 
