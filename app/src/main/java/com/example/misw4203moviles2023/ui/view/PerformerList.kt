@@ -19,7 +19,7 @@ import com.example.misw4203moviles2023.databinding.FragmentPerformerListBinding
 import com.example.misw4203moviles2023.domain.performer.model.Performer
 import com.example.misw4203moviles2023.ui.viewModel.PerformerListViewModel
 
-class PerformerList : Fragment() {
+class PerformerList(private val viewModel: PerformerListViewModel? = null) : Fragment() {
 
     companion object {
         fun newInstance() = PerformerList()
@@ -29,7 +29,7 @@ class PerformerList : Fragment() {
     private lateinit var performerAdapter: PerformerAdapter
     private lateinit var performerLayoutManager: LinearLayoutManager
 
-    private lateinit var viewModel: PerformerListViewModel
+    private lateinit var _viewModel: PerformerListViewModel
     private var _binding: FragmentPerformerListBinding? = null
     private val binding get() = _binding!!
 
@@ -49,8 +49,8 @@ class PerformerList : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this)[PerformerListViewModel::class.java]
-        viewModel.onCreate()
+        _viewModel = ViewModelProvider(this)[PerformerListViewModel::class.java]
+        _viewModel.onCreate()
 
         progressBar = binding.performerProgressBar
 
@@ -59,7 +59,7 @@ class PerformerList : Fragment() {
         performerRecyclerView.layoutManager = performerLayoutManager
         performerRecyclerView.visibility = View.GONE
         progressBar.visibility = View.VISIBLE
-        viewModel.performerModel.observe(viewLifecycleOwner) {
+        _viewModel.performerModel.observe(viewLifecycleOwner) {
             performerAdapter = PerformerAdapter(requireContext(), it ?: emptyList())
             performerAdapter.setOnItemClickListener(object : OnPerformerClickListener {
                 override fun onItemClick(position: Int, performer: Performer) {
@@ -77,7 +77,7 @@ class PerformerList : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        actionBar = (activity as AppCompatActivity?)!!.supportActionBar
+        actionBar = (activity as? AppCompatActivity)?.supportActionBar
         actionBar?.title = getString(R.string.menu_performer_list)
     }
 

@@ -4,6 +4,7 @@ import com.example.misw4203moviles2023.data.model.AlbumModel
 import com.example.misw4203moviles2023.data.model.TrackModel
 import com.example.misw4203moviles2023.domain.album.model.Album
 import com.example.misw4203moviles2023.domain.album.model.Track
+import com.example.misw4203moviles2023.domain.performer.model.Performer
 import org.mockito.Mockito
 
 @Suppress("LongParameterList")
@@ -72,4 +73,19 @@ fun mockTrack(
     Mockito.`when`(track.name).thenReturn(name)
     Mockito.`when`(track.duration).thenReturn(duration)
     return track
+}
+
+fun mockPerformer(
+    id: Int,
+    name: String,
+    description: String,
+    image: String,
+): Performer {
+    val performer = Mockito.mock(Performer::class.java)
+    Mockito.`when`(performer.id).thenReturn(id)
+    Mockito.`when`(performer.name).thenReturn(name)
+    Mockito.`when`(performer.description).thenReturn(description)
+    Mockito.`when`(performer.description).thenReturn(image)
+    Mockito.`when`(performer.albums).thenReturn(emptyList())
+    return performer
 }

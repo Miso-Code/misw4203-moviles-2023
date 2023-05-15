@@ -6,12 +6,14 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.IOException
 
-class PerformerService {
+class PerformerService(apiClient: PerformerApiClient? = null) {
     private val retrofit = RetrofitHelper.getRetrofit()
+    private val defaultApiClient = retrofit.create(PerformerApiClient::class.java)
+    private val apiClient = apiClient ?: defaultApiClient
     suspend fun getPerformers(): List<PerformerModel> {
         return withContext(Dispatchers.IO) {
             try {
-                val response = retrofit.create(PerformerApiClient::class.java).getPerformers()
+                val response = apiClient.getPerformers()
                 response.body() ?: emptyList()
             } catch (e: IOException) {
                 println("Error: ${e.message} : ${e.stackTrace}")
@@ -23,7 +25,7 @@ class PerformerService {
     suspend fun getPerformerById(id: Int): PerformerModel? {
         return withContext(Dispatchers.IO) {
             try {
-                val response = retrofit.create(PerformerApiClient::class.java).getPerformerById(id)
+                val response = apiClient.getPerformerById(id)
                 response.body() ?: PerformerModel(0, "", "", "", emptyList())
             } catch (e: IOException) {
                 println("Error: ${e.message} : ${e.stackTrace}")
