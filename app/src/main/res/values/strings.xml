@@ -10,6 +10,10 @@
     <string name="album_genre">Género del álbum: Género</string>
     <string name="album_record_label">Nombre de la Discografía</string>
 
+    <string name="collector_name">Nombre del coleccionista</string>
+    <string name="collector_telephone">Nombre del coleccionista</string>
+    <string name="collector_email">Nombre del coleccionista</string>
+
     <string name="title_activity_navigation_drawer">NavigationDrawer</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
