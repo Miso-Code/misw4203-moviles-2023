@@ -61,6 +61,10 @@ class DataBaseService(applicationContext: Context) {
 		performerDao.insertAllPerformersWithAlbums(performerAlbum)
 	}
 
+	suspend fun insertPerformerWithAlbumDao(performerAlbum: PerformerAlbumCrossRefEntity) {
+		performerDao.insertAllPerformerWithAlbum(performerAlbum)
+	}
+
 	suspend fun getAllPerformerDao(): List<PerformerWithAlbums> {
 		val response = performerDao.getAllPerformers()
 		return response ?: emptyList()

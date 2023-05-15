@@ -1,18 +1,24 @@
 package com.example.misw4203moviles2023.ui.viewModel
 
+import android.app.Application
+import android.content.Context
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.misw4203moviles2023.data.model.PerformerModel
 import com.example.misw4203moviles2023.domain.performer.GetPerformers
+import com.example.misw4203moviles2023.domain.performer.model.Performer
 import kotlinx.coroutines.launch
 
-class PerformerListViewModel : ViewModel() {
+class PerformerListViewModel(application: Application) : AndroidViewModel(application) {
 
-    val performerModel = MutableLiveData<List<PerformerModel>?>()
+    private val applicationContext: Context = application.applicationContext
+
+    val performerModel = MutableLiveData<List<Performer>?>()
     private val isLoading = MutableLiveData<Boolean>()
 
-    var getPerformers = GetPerformers()
+    var getPerformers = GetPerformers(applicationContext)
     fun onCreate() {
         viewModelScope.launch {
             isLoading.postValue(true)

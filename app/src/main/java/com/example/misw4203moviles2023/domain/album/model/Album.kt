@@ -13,7 +13,7 @@ data class Album(
     val description: String,
     val genre: String,
     val recordLabel: String,
-    val tracks: List<Track>,
+    val tracks: List<Track>
 )
 
 fun AlbumModel.toDomain() = Album(
@@ -24,7 +24,7 @@ fun AlbumModel.toDomain() = Album(
     description,
     genre,
     recordLabel,
-    tracks.map { it.toDomain() },
+    tracks.map { it.toDomain() }
 )
 
 fun AlbumEntity.toDomain(trackList: List<TrackEntity>) = Album(
@@ -35,7 +35,7 @@ fun AlbumEntity.toDomain(trackList: List<TrackEntity>) = Album(
     description,
     genre,
     recordLabel,
-    tracks = trackList.map { it.toDomain() },
+    tracks = trackList.map { it.toDomain() }
 )
 
 fun AlbumWithTracksEntity.toDomain() = Album(
@@ -46,5 +46,5 @@ fun AlbumWithTracksEntity.toDomain() = Album(
     album.description,
     album.genre,
     album.recordLabel,
-    tracks = tracks.map { it.toDomain() },
+    tracks = tracks.map { it.toDomain() }
 )

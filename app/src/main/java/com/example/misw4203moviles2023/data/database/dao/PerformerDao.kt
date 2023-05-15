@@ -18,6 +18,9 @@ interface PerformerDao {
     suspend fun insertAllPerformersWithAlbums(performerAlbumsCrossRefEntity: List<PerformerAlbumCrossRefEntity>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAllPerformerWithAlbum(performerAlbumsCrossRefEntity: PerformerAlbumCrossRefEntity)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAllPerformers(performers: List<PerformerEntity>)
 
     @Query("Delete from  track_table")

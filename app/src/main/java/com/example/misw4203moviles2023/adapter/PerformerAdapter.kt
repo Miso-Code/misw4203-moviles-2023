@@ -6,16 +6,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.misw4203moviles2023.R
-import com.example.misw4203moviles2023.data.model.PerformerModel
 import com.example.misw4203moviles2023.databinding.PerformerRowBinding
+import com.example.misw4203moviles2023.domain.performer.model.Performer
 
 interface OnPerformerClickListener {
-    fun onItemClick(position: Int, performer: PerformerModel)
+    fun onItemClick(position: Int, performer: Performer)
 }
 
 class PerformerAdapter(
     private val context: Context,
-    private val performerList: List<PerformerModel>
+    private val performerList: List<Performer>
 ) :
     RecyclerView.Adapter<PerformerAdapter.PerformerViewHolder>() {
 
@@ -24,7 +24,7 @@ class PerformerAdapter(
     inner class PerformerViewHolder(private val binding: PerformerRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(performer: PerformerModel) {
+        fun bind(performer: Performer) {
             binding.performerName.text = performer.name
             Glide.with(context).load(performer.image).placeholder(R.drawable.ic_artist)
                 .into(binding.performerImage)

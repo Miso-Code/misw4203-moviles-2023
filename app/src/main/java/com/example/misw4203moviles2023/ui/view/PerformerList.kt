@@ -15,8 +15,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.misw4203moviles2023.R
 import com.example.misw4203moviles2023.adapter.OnPerformerClickListener
 import com.example.misw4203moviles2023.adapter.PerformerAdapter
-import com.example.misw4203moviles2023.data.model.PerformerModel
 import com.example.misw4203moviles2023.databinding.FragmentPerformerListBinding
+import com.example.misw4203moviles2023.domain.performer.model.Performer
 import com.example.misw4203moviles2023.ui.viewModel.PerformerListViewModel
 
 class PerformerList : Fragment() {
@@ -62,7 +62,7 @@ class PerformerList : Fragment() {
         viewModel.performerModel.observe(viewLifecycleOwner) {
             performerAdapter = PerformerAdapter(requireContext(), it ?: emptyList())
             performerAdapter.setOnItemClickListener(object : OnPerformerClickListener {
-                override fun onItemClick(position: Int, performer: PerformerModel) {
+                override fun onItemClick(position: Int, performer: Performer) {
                     PerformerListDirections.actionPerformerListToPerformerDetail(performer.id)
                         .also { action ->
                             view.findNavController().navigate(action)

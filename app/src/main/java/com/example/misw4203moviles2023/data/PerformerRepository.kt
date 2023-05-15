@@ -1,15 +1,13 @@
 package com.example.misw4203moviles2023.data
 
 import android.content.Context
+import android.util.Log
 import com.example.misw4203moviles2023.data.database.DataBaseService
 import com.example.misw4203moviles2023.data.database.entities.PerformerAlbumCrossRefEntity
 import com.example.misw4203moviles2023.data.database.entities.toDatabase
 import com.example.misw4203moviles2023.data.database.entities.toWithAlbumsDB
-import com.example.misw4203moviles2023.data.model.AlbumModel
 import com.example.misw4203moviles2023.data.model.PerformerModel
-import com.example.misw4203moviles2023.data.network.AlbumService
 import com.example.misw4203moviles2023.data.network.PerformerService
-import com.example.misw4203moviles2023.domain.album.model.Album
 import com.example.misw4203moviles2023.domain.performer.model.Performer
 import com.example.misw4203moviles2023.domain.performer.model.toDomain
 
@@ -24,7 +22,6 @@ class PerformerRepository(service: PerformerService? = null, context: Context) {
 
 	suspend fun getPerformersFromDB(): List<Performer> {
 		val response = dao.getAllPerformerDao()
-		response.map { it.toDomain() }
 		return response.map { it.toDomain() }
 	}
 
@@ -37,9 +34,21 @@ class PerformerRepository(service: PerformerService? = null, context: Context) {
 		dao.deleteAllPerformerDao()
 	}
 
+	suspend fun clearAllPerformerWithAlbum() {
+		dao.deleteAlbumsDao()
+		dao.deleteAllPerformerDao()
+	}
+
 	suspend fun insertAllPerformer(performers: List<Performer>) {
 		val dataPerformers = performers.map { it.toWithAlbumsDB() }
-		val data = performers.map{ PerformerAlbumCrossRefEntity() }
-		dao.insertPerformerWithAlbumsDao()
+		val dataDb = performers.map { it.toDatabase() }
+		performers.map {
+			it.albums.map { album ->
+				dao.insertPerformerWithAlbumDao(
+					PerformerAlbumCrossRefEntity(albumId = album.id, performerId = it.id)
+				)
+			}
+		}
+		dao.insertPerformerDao(dataDb)
 	}
 }

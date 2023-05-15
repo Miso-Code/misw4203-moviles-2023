@@ -17,7 +17,7 @@ data class Performer(
 )
 
 fun PerformerModel.toDomain() =
-	Performer(id, name, description, image, albums = albums.map { it.toDomain() })
+	Performer(id, name, description, image, albums = emptyList())
 
 fun PerformerWithAlbums.toDomain() = Performer(
 	performer.id,
