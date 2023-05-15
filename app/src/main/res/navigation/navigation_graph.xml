@@ -48,13 +48,20 @@
     </fragment>
     <fragment
         android:id="@+id/performerDetail"
-        android:name="com.example.misw4203moviles2023.ui.view.ArtistDetail"
+        android:name="com.example.misw4203moviles2023.ui.view.PerformerDetail"
         android:label="fragment_performer_detail"
         tools:layout="@layout/fragment_performer_detail">
         <argument
             android:name="performerId"
             android:defaultValue="-1"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_performerDetail_to_albumDetail"
+            app:destination="@id/albumDetail">
+            <argument
+                android:name="albumId"
+                app:argType="integer" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/collectorList"

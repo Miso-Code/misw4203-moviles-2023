@@ -38,11 +38,11 @@ class TestNavigation {
 
         // Go to Artist List
         onView(withId(R.id.nav_view))
-            .perform(NavigationViewActions.navigateTo(R.id.artistList))
+            .perform(NavigationViewActions.navigateTo(R.id.performerList))
 
         // Check that artist list fragment is visible
         expectedViewTitle = ApplicationProvider.getApplicationContext<Application>()
-            .getString(R.string.menu_artist_list)
+            .getString(R.string.menu_performer_list)
         matchToolbarTitle(expectedViewTitle)
 
         Thread.sleep(1000)
