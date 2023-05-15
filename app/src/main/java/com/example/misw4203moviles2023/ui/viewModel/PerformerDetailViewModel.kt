@@ -1,25 +1,29 @@
 package com.example.misw4203moviles2023.ui.viewModel
 
+import android.app.Application
+import android.content.Context
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.misw4203moviles2023.data.model.PerformerModel
 import com.example.misw4203moviles2023.domain.performer.GetPerformerById
+import com.example.misw4203moviles2023.domain.performer.model.Performer
 import kotlinx.coroutines.launch
 
 private const val TIMESTAMPT_REGEX_END = 10
 
-class PerformerDetailViewModel : ViewModel() {
+class PerformerDetailViewModel(application: Application) : AndroidViewModel(application) {
 
-    val performerModel = MutableLiveData<PerformerModel?>()
+    private val applicationContext: Context = application.applicationContext
+
+    val performerModel = MutableLiveData<Performer?>()
     private val isLoading = MutableLiveData<Boolean>()
 
-    var getPerformerById = GetPerformerById()
+    var getPerformerById = GetPerformerById(applicationContext)
     fun onCreate(performerId: Int) {
         viewModelScope.launch {
             isLoading.postValue(true)
             val result = getPerformerById(performerId)
-            result.albums.forEach {
+            result?.albums?.forEach {
                 it.releaseDate =
                     it.releaseDate.substring(0, TIMESTAMPT_REGEX_END).split("-").reversed()
                         .joinToString("/")

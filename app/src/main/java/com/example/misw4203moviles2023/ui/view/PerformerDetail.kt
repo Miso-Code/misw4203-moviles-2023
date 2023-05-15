@@ -17,8 +17,8 @@ import com.bumptech.glide.Glide
 import com.example.misw4203moviles2023.R
 import com.example.misw4203moviles2023.adapter.AlbumAdapter
 import com.example.misw4203moviles2023.adapter.OnItemClickListener
-import com.example.misw4203moviles2023.data.model.AlbumModel
 import com.example.misw4203moviles2023.databinding.FragmentPerformerDetailBinding
+import com.example.misw4203moviles2023.domain.album.model.Album
 import com.example.misw4203moviles2023.ui.viewModel.PerformerDetailViewModel
 
 class PerformerDetail : Fragment() {
@@ -87,7 +87,7 @@ class PerformerDetail : Fragment() {
 
             albumAdapter = AlbumAdapter(requireContext(), it?.albums ?: emptyList())
             albumAdapter.setOnItemClickListener(object : OnItemClickListener {
-                override fun onItemClick(position: Int, album: AlbumModel) {
+                override fun onItemClick(position: Int, album: Album) {
                     PerformerDetailDirections.actionPerformerDetailToAlbumDetail(album.id)
                         .also { action ->
                             view.findNavController().navigate(action)
