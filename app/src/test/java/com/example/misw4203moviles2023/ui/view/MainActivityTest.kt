@@ -38,8 +38,8 @@ class MainActivityTest {
         navView.menu.performIdentifierAction(R.id.albumList, 0)
         assertEquals(navController.currentDestination?.id.toString(), R.id.albumList.toString())
 
-        navView.menu.performIdentifierAction(R.id.artistList, 0)
-        assertEquals(navController.currentDestination?.id.toString(), R.id.artistList.toString())
+        navView.menu.performIdentifierAction(R.id.performerList, 0)
+        assertEquals(navController.currentDestination?.id.toString(), R.id.performerList.toString())
 
         navView.menu.performIdentifierAction(R.id.collectorList, 0)
         assertEquals(navController.currentDestination?.id.toString(), R.id.collectorList.toString())
@@ -56,12 +56,12 @@ class MainActivityTest {
 
         activity.onOptionsItemSelected(
             mock(MenuItem::class.java, Mockito.RETURNS_DEEP_STUBS).apply {
-                `when`(itemId).thenReturn(R.id.artistList)
+                `when`(itemId).thenReturn(R.id.performerList)
             },
         )
         assertEquals(
             activity.supportActionBar?.title,
-            activity.getString(R.string.menu_artist_list),
+            activity.getString(R.string.menu_performer_list),
         )
 
         activity.onOptionsItemSelected(

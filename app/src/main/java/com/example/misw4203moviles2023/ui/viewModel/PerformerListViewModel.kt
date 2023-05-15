@@ -4,9 +4,7 @@ import android.app.Application
 import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.misw4203moviles2023.data.model.PerformerModel
 import com.example.misw4203moviles2023.domain.performer.GetPerformers
 import com.example.misw4203moviles2023.domain.performer.model.Performer
 import kotlinx.coroutines.launch

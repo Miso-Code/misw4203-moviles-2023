@@ -15,7 +15,7 @@ interface OnPerformerClickListener {
 
 class PerformerAdapter(
     private val context: Context,
-    private val performerList: List<Performer>
+    private val performerList: List<Performer>,
 ) :
     RecyclerView.Adapter<PerformerAdapter.PerformerViewHolder>() {
 
@@ -28,7 +28,6 @@ class PerformerAdapter(
             binding.performerName.text = performer.name
             Glide.with(context).load(performer.image).placeholder(R.drawable.ic_artist)
                 .into(binding.performerImage)
-
         }
     }
 

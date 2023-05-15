@@ -7,7 +7,6 @@ import androidx.room.Query
 import com.example.misw4203moviles2023.data.database.entities.PerformerAlbumCrossRefEntity
 import com.example.misw4203moviles2023.data.database.entities.PerformerEntity
 import com.example.misw4203moviles2023.data.database.entities.PerformerWithAlbums
-import com.example.misw4203moviles2023.data.database.entities.TrackEntity
 
 @Dao
 interface PerformerDao {

@@ -5,7 +5,6 @@ import androidx.room.Entity
 
 @Entity(primaryKeys = ["album_id", "performer_id"])
 data class PerformerAlbumCrossRefEntity(
-	@ColumnInfo(name = "album_id") val albumId: Int,
-	@ColumnInfo(name = "performer_id") val performerId: Int
+    @ColumnInfo(name = "album_id") val albumId: Int,
+    @ColumnInfo(name = "performer_id") val performerId: Int,
 )
-
