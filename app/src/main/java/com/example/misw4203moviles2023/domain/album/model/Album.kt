@@ -27,6 +27,17 @@ fun AlbumModel.toDomain() = Album(
     tracks.map { it.toDomain() },
 )
 
+fun AlbumModel.performerToDomain() = Album(
+    id,
+    name,
+    cover,
+    releaseDate,
+    description,
+    genre,
+    recordLabel,
+    emptyList(),
+)
+
 fun AlbumEntity.toDomain(trackList: List<TrackEntity>) = Album(
     id,
     name,
