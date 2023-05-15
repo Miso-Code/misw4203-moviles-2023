@@ -13,19 +13,18 @@ class GetPerformers (context: Context) {
     private val repository = PerformerRepository(null, context)
     private val albumRepository = AlbumRepository(null, context)
 
-    suspend operator fun invoke(): List<Performer>? = repository.getPerformersFromApi()
+   // suspend operator fun invoke(): List<Performer>? = repository.getPerformersFromApi()
 
-    /*suspend operator fun invoke(): List<Performer> {
+    suspend operator fun invoke(): List<Performer> {
         val performers = repository.getPerformersFromApi()
 
         return if (performers.isNotEmpty()) {
             repository.clearAllPerformer()
-            albumRepository.clearAlbums()
 
             repository.insertAllPerformer(performers)
             return performers
         } else {
             repository.getPerformersFromDB()
         }
-    }*/
+    }
 }

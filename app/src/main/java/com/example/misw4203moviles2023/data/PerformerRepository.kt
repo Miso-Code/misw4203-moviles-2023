@@ -25,9 +25,12 @@ class PerformerRepository(service: PerformerService? = null, context: Context) {
 		return response.map { it.toDomain() }
 	}
 
-	suspend fun getPerformerByIdFromApi(id: Int): Performer {
+	suspend fun getPerformerByIdFromApi(id: Int): Performer? {
 		val response = api.getPerformerById(id)
-		return response.toDomain()
+		if (response != null) {
+			return response.toDomain()
+		}
+		return null
 	}
 
 	suspend fun clearAllPerformer() {
