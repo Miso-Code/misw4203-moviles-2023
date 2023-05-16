@@ -19,7 +19,6 @@ import com.example.misw4203moviles2023.adapter.AlbumAdapter
 import com.example.misw4203moviles2023.adapter.OnItemClickListener
 import com.example.misw4203moviles2023.databinding.FragmentPerformerDetailBinding
 import com.example.misw4203moviles2023.domain.album.model.Album
-import com.example.misw4203moviles2023.ui.viewModel.AlbumDetailViewModel
 import com.example.misw4203moviles2023.ui.viewModel.PerformerDetailViewModel
 
 class PerformerDetail(private val viewModel: PerformerDetailViewModel? = null) : Fragment() {

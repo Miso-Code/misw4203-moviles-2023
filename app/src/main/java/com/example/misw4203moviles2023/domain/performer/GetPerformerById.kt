@@ -1,7 +1,6 @@
 package com.example.misw4203moviles2023.domain.performer
 
 import android.content.Context
-import android.util.Log
 import com.example.misw4203moviles2023.data.PerformerRepository
 import com.example.misw4203moviles2023.domain.performer.model.Performer
 
@@ -14,7 +13,6 @@ class GetPerformerById(context: Context) {
 			performer
 		} else {
 			val response = repository.getPerformerByIdFromDB(id)
-			Log.d("getPerformerByIdFromApi",response.toString())
 			response
 		}
 	}

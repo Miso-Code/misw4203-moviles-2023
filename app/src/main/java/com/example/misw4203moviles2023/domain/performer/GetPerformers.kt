@@ -1,11 +1,8 @@
 package com.example.misw4203moviles2023.domain.performer
 
 import android.content.Context
-import android.util.Log
 import com.example.misw4203moviles2023.data.AlbumRepository
 import com.example.misw4203moviles2023.data.PerformerRepository
-import com.example.misw4203moviles2023.data.database.entities.toDatabase
-import com.example.misw4203moviles2023.data.database.entities.toTrack
 import com.example.misw4203moviles2023.domain.album.model.Album
 import com.example.misw4203moviles2023.domain.performer.model.Performer
 

@@ -4,7 +4,6 @@ import android.content.Context
 import com.example.misw4203moviles2023.data.database.DataBaseService
 import com.example.misw4203moviles2023.data.database.entities.PerformerAlbumCrossRefEntity
 import com.example.misw4203moviles2023.data.database.entities.toDatabase
-import com.example.misw4203moviles2023.data.database.entities.toWithAlbumsDB
 import com.example.misw4203moviles2023.data.model.PerformerModel
 import com.example.misw4203moviles2023.data.network.PerformerService
 import com.example.misw4203moviles2023.domain.performer.model.Performer
