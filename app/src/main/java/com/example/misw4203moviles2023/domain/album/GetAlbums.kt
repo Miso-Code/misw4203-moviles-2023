@@ -1,6 +1,7 @@
 package com.example.misw4203moviles2023.domain.album
 
 import android.content.Context
+import android.util.Log
 import com.example.misw4203moviles2023.data.AlbumRepository
 import com.example.misw4203moviles2023.data.database.entities.toDatabase
 import com.example.misw4203moviles2023.data.database.entities.toTrack
@@ -20,7 +21,9 @@ class GetAlbums(context: Context) {
             )
             return albums
         } else {
-            repository.getAllAlbumsFromDB()
+            val response =            repository.getAllAlbumsFromDB()
+            Log.d("GetAlbums-response", response.toString())
+            response
         }
     }
 }

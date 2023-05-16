@@ -22,5 +22,5 @@ fun PerformerWithAlbums.toDomain() = Performer(
     performer.name,
     performer.name,
     performer.image,
-    albums.map { it.toDomain(emptyList()) },
+    albums.map { it.performerToDomain() },
 )

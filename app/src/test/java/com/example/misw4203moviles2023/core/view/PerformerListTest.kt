@@ -1,4 +1,4 @@
-package com.example.misw4203moviles2023.ui.view
+package com.example.misw4203moviles2023.core.view
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.fragment.app.FragmentFactory
@@ -6,6 +6,7 @@ import androidx.fragment.app.testing.launchFragment
 import androidx.lifecycle.MutableLiveData
 import com.example.misw4203moviles2023.mockPerformer
 import com.example.misw4203moviles2023.test.TestApplication
+import com.example.misw4203moviles2023.ui.view.PerformerList
 import com.example.misw4203moviles2023.ui.viewModel.PerformerListViewModel
 import org.junit.Assert.assertEquals
 import org.junit.Before
