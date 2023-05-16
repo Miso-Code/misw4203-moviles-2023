@@ -15,7 +15,7 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/activity_horizontal_margin_content"
             android:paddingTop="@dimen/activity_vertical_margin_content"
@@ -34,19 +34,21 @@
                 android:id="@+id/performerDetailImageView"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
+                android:scaleType="fitStart"
                 android:contentDescription="@string/nav_header_desc"
                 android:paddingTop="@dimen/nav_header_vertical_spacing"
                 app:srcCompat="@drawable/ic_artist" />
 
             <TextView
                 android:id="@+id/performerDescription"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingTop="@dimen/nav_header_vertical_spacing"
                 android:text="@string/performer_description" />
 
             <TextView
                 android:id="@+id/performerAlbums"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:paddingTop="24dp"
@@ -56,8 +58,8 @@
                 android:id="@+id/performer_list_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:paddingTop="@dimen/activity_vertical_margin"
                 android:scrollbars="vertical"
-                android:padding="8dp"
                 android:clipToPadding="false" />
         </LinearLayout>
     </ScrollView>
