@@ -3,6 +3,7 @@ package com.example.misw4203moviles2023.data.network
 import com.example.misw4203moviles2023.data.model.PerformerModel
 import com.example.misw4203moviles2023.test.TestApplication
 import junit.framework.TestCase.assertEquals
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
@@ -25,6 +26,7 @@ class PerformerServiceTest {
         performerService = PerformerService(apiClient)
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun testGetPerformers() = runTest {
         // Given
@@ -41,6 +43,7 @@ class PerformerServiceTest {
         assertEquals(performers, result)
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun testGetPerformerById() = runTest {
         // Given

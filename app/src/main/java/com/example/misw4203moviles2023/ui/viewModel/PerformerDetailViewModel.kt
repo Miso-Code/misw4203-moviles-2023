@@ -23,7 +23,7 @@ class PerformerDetailViewModel(application: Application) : AndroidViewModel(appl
         viewModelScope.launch {
             isLoading.postValue(true)
             val result = getPerformerById(performerId)
-            result?.albums?.forEach {
+            result.albums.forEach {
                 it.releaseDate =
                     it.releaseDate.substring(0, TIMESTAMPT_REGEX_END).split("-").reversed()
                         .joinToString("/")

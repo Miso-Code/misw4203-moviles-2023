@@ -36,6 +36,7 @@ class AlbumCreate : Fragment() {
         // TODO Use the ViewModel
     }
 
+    @Suppress("DEPRECATION")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         actionBar = (activity as? AppCompatActivity)?.supportActionBar

@@ -94,6 +94,7 @@ class AlbumDetail(private val viewModel: AlbumDetailViewModel? = null) : Fragmen
         }
     }
 
+    @Suppress("DEPRECATION")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         actionBar = (activity as? AppCompatActivity)?.supportActionBar

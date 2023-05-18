@@ -100,6 +100,7 @@ class PerformerDetail(private val viewModel: PerformerDetailViewModel? = null) :
         }
     }
 
+    @Suppress("DEPRECATION")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         actionBar = (activity as? AppCompatActivity)?.supportActionBar

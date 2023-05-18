@@ -7,6 +7,7 @@ import com.example.misw4203moviles2023.domain.album.model.Album
 import com.example.misw4203moviles2023.test.TestApplication
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertTrue
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
@@ -33,6 +34,7 @@ class AlbumRepositoryTest {
         repository = AlbumRepository(mockService, context)
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun `getAllAlbums should return empty list when api returns null`() = runTest {
         // Given
@@ -45,6 +47,7 @@ class AlbumRepositoryTest {
         assertTrue(result.isEmpty())
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun `getAllAlbums should return list of albums when api returns non-null response`() = runTest {
         // Given
@@ -66,6 +69,7 @@ class AlbumRepositoryTest {
         assertEquals(albums, result)
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun `getAlbumById should return default album when api returns null`() = runTest {
         // Given
@@ -81,6 +85,7 @@ class AlbumRepositoryTest {
         assertEquals(defaultAlbum, result)
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun `getAlbumById should return album when api returns non-null response`() = runTest {
         // Given

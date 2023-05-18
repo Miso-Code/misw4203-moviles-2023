@@ -19,7 +19,7 @@ fun PerformerModel.toDomain() =
 fun PerformerWithAlbums.toDomain() = Performer(
     performer.id,
     performer.name,
-    performer.name,
+    performer.description,
     performer.image,
     albums.map { it.performerToDomain() },
 )

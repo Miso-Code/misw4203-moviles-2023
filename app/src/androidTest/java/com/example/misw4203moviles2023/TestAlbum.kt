@@ -32,10 +32,10 @@ class TestAlbum {
 
     @Test
     fun list_album_and_detail() {
-        var randomAlbumIndex = 0
-        var itemCount = 0
+        var randomAlbumIndex = -1
+        var itemCount: Int
 
-        var expectedViewTitle: String = ApplicationProvider.getApplicationContext<Application>()
+        val expectedViewTitle: String = ApplicationProvider.getApplicationContext<Application>()
             .getString(R.string.menu_album_list)
         matchToolbarTitle(expectedViewTitle)
 
@@ -71,7 +71,7 @@ class TestAlbum {
             randomAlbumIndex = (0 until itemCount).random()
         }
 
-        if (randomAlbumIndex != 0) {
+        if (randomAlbumIndex != -1) {
             onView(withId(R.id.album_list_recycler_view)).perform(
                 scrollToPosition<RecyclerView.ViewHolder>(randomAlbumIndex),
             )
@@ -87,15 +87,11 @@ class TestAlbum {
             onView(withId(R.id.albumGenre)).check(matches(isDisplayed()))
             onView(withId(R.id.albumRecordLabel)).check(matches(isDisplayed()))
 
+            itemCount = 0
             onView(withId(R.id.track_list_recycler_view)).check { view, _ ->
                 val recyclerView = view as RecyclerView
 
-                val itemCount = recyclerView.adapter!!.itemCount
-
-                if (itemCount != 0) {
-                    onView(withId(R.id.albumTracks)).check(matches(isDisplayed()))
-                }
-
+                itemCount = recyclerView.adapter!!.itemCount
                 for (i in 0 until itemCount) {
                     val row: View = view.getChildAt(i)
 
@@ -105,6 +101,12 @@ class TestAlbum {
                     assertThat(row.findViewById<View>(R.id.track_name).isShown, `is`(true))
                     assertThat(row.findViewById<View>(R.id.track_duration).isShown, `is`(true))
                 }
+            }
+
+            if (itemCount != 0) {
+                onView(withId(R.id.albumTracks)).check(matches(isDisplayed()))
+            } else {
+                onView(withId(R.id.albumTracks)).check(matches(not(isDisplayed())))
             }
         }
     }

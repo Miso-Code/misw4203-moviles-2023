@@ -52,7 +52,7 @@ class PerformerRepository(service: PerformerService? = null, context: Context) {
 
             performer.albums.forEach { album ->
                 dao.insertPerformerWithAlbumDao(
-                    PerformerAlbumCrossRefEntity(albumId = album.id, performerId = performer.id)
+                    PerformerAlbumCrossRefEntity(albumId = album.id, performerId = performer.id),
                 )
             }
         }

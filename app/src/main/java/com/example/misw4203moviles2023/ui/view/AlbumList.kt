@@ -74,6 +74,7 @@ class AlbumList(private val viewModel: AlbumListViewModel? = null) : Fragment() 
         }
     }
 
+    @Suppress("DEPRECATION")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         actionBar = (activity as? AppCompatActivity)?.supportActionBar

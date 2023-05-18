@@ -5,6 +5,7 @@ import androidx.test.platform.app.InstrumentationRegistry
 import com.example.misw4203moviles2023.domain.performer.GetPerformerById
 import com.example.misw4203moviles2023.mockPerformer
 import com.example.misw4203moviles2023.test.TestApplication
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -22,42 +23,43 @@ import org.robolectric.annotation.Config
 @RunWith(RobolectricTestRunner::class)
 class PerformerDetailViewModelTest {
 
-	@get:Rule
-	val instantTaskRule = InstantTaskExecutorRule()
+    @get:Rule
+    val instantTaskRule = InstantTaskExecutorRule()
 
-	@get:Rule
-	val mockitoRule: MockitoRule = MockitoJUnit.rule()
+    @get:Rule
+    val mockitoRule: MockitoRule = MockitoJUnit.rule()
 
-	@Mock
-	lateinit var getPerformerById: GetPerformerById
+    @Mock
+    lateinit var getPerformerById: GetPerformerById
 
-	private lateinit var viewModel: PerformerDetailViewModel
+    private lateinit var viewModel: PerformerDetailViewModel
 
-	@Before
-	fun setUp() {
-		val app =
-			InstrumentationRegistry.getInstrumentation().targetContext.applicationContext as TestApplication
-		viewModel = PerformerDetailViewModel(app)
-		viewModel.getPerformerById = getPerformerById
-	}
+    @Before
+    fun setUp() {
+        val app =
+            InstrumentationRegistry.getInstrumentation().targetContext.applicationContext as TestApplication
+        viewModel = PerformerDetailViewModel(app)
+        viewModel.getPerformerById = getPerformerById
+    }
 
-	@Test
-	fun testOnCreate() = runTest {
-		val performerId = 1
-		val performer = mockPerformer(
-			performerId,
-			"Performer Title",
-			"Performer description",
-			"performer.png"
-		)
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @Test
+    fun testOnCreate() = runTest {
+        val performerId = 1
+        val performer = mockPerformer(
+            performerId,
+            "Performer Title",
+            "Performer description",
+            "performer.png",
+        )
 
-		// Set up the mocked result
-		`when`(viewModel.getPerformerById(1)).thenReturn(performer)
+        // Set up the mocked result
+        `when`(viewModel.getPerformerById(1)).thenReturn(performer)
 
-		// Call the method under test
-		viewModel.onCreate(performerId)
+        // Call the method under test
+        viewModel.onCreate(performerId)
 
-		// Verify that the performerModel is set correctly
-		assertEquals(performer, viewModel.performerModel.value)
-	}
+        // Verify that the performerModel is set correctly
+        assertEquals(performer, viewModel.performerModel.value)
+    }
 }

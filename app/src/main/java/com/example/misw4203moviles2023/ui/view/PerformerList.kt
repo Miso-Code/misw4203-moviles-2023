@@ -75,6 +75,7 @@ class PerformerList(private val viewModel: PerformerListViewModel? = null) : Fra
         }
     }
 
+    @Suppress("DEPRECATION")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         actionBar = (activity as? AppCompatActivity)?.supportActionBar
