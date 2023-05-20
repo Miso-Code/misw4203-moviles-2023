@@ -2,6 +2,8 @@ package com.example.misw4203moviles2023.data.network
 
 import com.example.misw4203moviles2023.core.RetrofitHelper
 import com.example.misw4203moviles2023.data.model.AlbumModel
+import com.example.misw4203moviles2023.data.model.AlbumModelCreate
+import com.example.misw4203moviles2023.data.model.AlbumModelNoTracks
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.IOException
@@ -28,6 +30,30 @@ class AlbumService(apiClient: AlbumApiClient? = null) {
             try {
                 val response = apiClient.getAlbumById(id)
                 response.body() ?: AlbumModel(0, "", "", "", "", "", "", emptyList())
+            } catch (e: IOException) {
+                println("Error: ${e.message} : ${e.stackTrace}")
+                null
+            }
+        }
+    }
+
+    suspend fun createAlbum(album: AlbumModelCreate): AlbumModelNoTracks? {
+        return withContext(Dispatchers.IO) {
+            try {
+                val response = apiClient.createAlbum(album)
+                response.body() ?: AlbumModelNoTracks(0, "", "", "", "", "", "")
+            } catch (e: IOException) {
+                println("Error: ${e.message} : ${e.stackTrace}")
+                null
+            }
+        }
+    }
+
+    suspend fun deleteAlbumById(id: Int): Unit? {
+        return withContext(Dispatchers.IO) {
+            try {
+                val response = apiClient.deleteAlbumById(id)
+                response.body() ?: Unit
             } catch (e: IOException) {
                 println("Error: ${e.message} : ${e.stackTrace}")
                 null

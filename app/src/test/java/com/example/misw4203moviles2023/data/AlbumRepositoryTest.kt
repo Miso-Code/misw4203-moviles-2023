@@ -2,8 +2,11 @@ package com.example.misw4203moviles2023.data
 
 import androidx.test.platform.app.InstrumentationRegistry
 import com.example.misw4203moviles2023.data.model.AlbumModel
+import com.example.misw4203moviles2023.data.model.AlbumModelCreate
+import com.example.misw4203moviles2023.data.model.AlbumModelNoTracks
 import com.example.misw4203moviles2023.data.network.AlbumService
 import com.example.misw4203moviles2023.domain.album.model.Album
+import com.example.misw4203moviles2023.domain.album.model.toDomain
 import com.example.misw4203moviles2023.test.TestApplication
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertTrue
@@ -97,6 +100,36 @@ class AlbumRepositoryTest {
         // When
         val album = Album(1, "Album 1", "cover1.jpg", "2022-01-01", "", "", "", emptyList())
         val result = repository.getAlbumByIdFromApi(id)
+
+        // Then
+        assertEquals(album, result)
+    }
+
+    @Test
+    fun `createAlbum should return album when api returns non-null response`() = runTest {
+        // Given
+        val albumCreate = AlbumModelCreate(
+            "Album 1",
+            "cover1.jpg",
+            "2022-01-01",
+            "",
+            "",
+            "",
+        )
+        val albumModel = AlbumModelNoTracks(
+            1,
+            albumCreate.name,
+            albumCreate.cover,
+            albumCreate.releaseDate,
+            albumCreate.description,
+            albumCreate.genre,
+            albumCreate.recordLabel,
+        )
+        whenever(mockService.createAlbum(albumCreate)).thenReturn(albumModel)
+
+        // When
+        val album = albumModel.toDomain()
+        val result = repository.createAlbumToToApi(album)
 
         // Then
         assertEquals(album, result)

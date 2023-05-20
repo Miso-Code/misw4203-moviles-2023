@@ -19,9 +19,6 @@ import com.example.misw4203moviles2023.databinding.FragmentAlbumDetailBinding
 import com.example.misw4203moviles2023.ui.viewModel.AlbumDetailViewModel
 
 class AlbumDetail(private val viewModel: AlbumDetailViewModel? = null) : Fragment() {
-    companion object {
-        fun newInstance() = AlbumDetail()
-    }
 
     private lateinit var trackRecyclerView: RecyclerView
     private lateinit var trackAdapter: TrackAdapter
@@ -80,6 +77,8 @@ class AlbumDetail(private val viewModel: AlbumDetailViewModel? = null) : Fragmen
             binding.albumGenre.text = "Género del álbum: ${it?.genre}"
             binding.albumRecordLabel.text = "${it?.recordLabel}"
 
+            binding.albumId.text = it?.id.toString()
+
             actionBar?.title = it?.name
 
             Glide.with(requireContext())
@@ -96,6 +95,7 @@ class AlbumDetail(private val viewModel: AlbumDetailViewModel? = null) : Fragmen
 
     @Suppress("DEPRECATION")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
+        @Suppress("DEPRECATION")
         super.onActivityCreated(savedInstanceState)
         actionBar = (activity as? AppCompatActivity)?.supportActionBar
         actionBar?.title = "Cargando..."

@@ -36,6 +36,10 @@ class DataBaseService(applicationContext: Context) {
         albumDao.deleteAllAlbums()
     }
 
+    suspend fun deleteAlbumByIdDao(id: Int) {
+        albumDao.deleteAlbumById(id)
+    }
+
     suspend fun insertAlbumsDao(albums: List<AlbumEntity>) {
         albumDao.insertAllAlbums(albums)
     }

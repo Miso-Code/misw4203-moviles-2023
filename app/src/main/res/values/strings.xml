@@ -38,6 +38,8 @@
     <string name="performer_description">Descripción del artista</string>
     <string name="performer_image">Foto del artista</string>
 
+    <string name="album_create_success">Álbum creado exitosamente</string>
+
 
 
 </resources>
