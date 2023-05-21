@@ -1,10 +1,11 @@
-package com.example.misw4203moviles2023.ui.view
+package com.example.misw4203moviles2023.core.view
 
 import android.view.MenuItem
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.example.misw4203moviles2023.R
+import com.example.misw4203moviles2023.ui.view.MainActivity
 import com.google.android.material.navigation.NavigationView
 import org.junit.After
 import org.junit.Assert.assertEquals

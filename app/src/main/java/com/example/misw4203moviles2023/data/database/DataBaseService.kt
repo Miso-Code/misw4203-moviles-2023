@@ -25,8 +25,7 @@ class DataBaseService(applicationContext: Context) {
     private val performerDao = db.getPerformerDao()
 
     suspend fun getAllAlbumsDao(): List<AlbumWithTracksEntity> {
-        val response = albumDao.getAllAlbums()
-        return response ?: emptyList()
+        return albumDao.getAllAlbums()
     }
 
     suspend fun getAlbumByIdDao(id: Int): AlbumWithTracksEntity {
@@ -34,7 +33,7 @@ class DataBaseService(applicationContext: Context) {
     }
 
     suspend fun deleteAlbumsDao() {
-        val response = albumDao.deleteAllAlbums()
+        albumDao.deleteAllAlbums()
     }
 
     suspend fun insertAlbumsDao(albums: List<AlbumEntity>) {
@@ -42,8 +41,7 @@ class DataBaseService(applicationContext: Context) {
     }
 
     suspend fun getAllTracksDao(): List<TrackEntity> {
-        val response = trackDao.getAllTracks()
-        return response ?: emptyList()
+        return trackDao.getAllTracks()
     }
 
     suspend fun deleteTracksDao() {
@@ -67,8 +65,11 @@ class DataBaseService(applicationContext: Context) {
     }
 
     suspend fun getAllPerformerDao(): List<PerformerWithAlbums> {
-        val response = performerDao.getAllPerformers()
-        return response ?: emptyList()
+        return performerDao.getAllPerformers()
+    }
+
+    suspend fun getPerformerByIdDao(id: Int): PerformerWithAlbums {
+        return performerDao.getPerformerById(id)
     }
 
     suspend fun deleteAllPerformerDao() {

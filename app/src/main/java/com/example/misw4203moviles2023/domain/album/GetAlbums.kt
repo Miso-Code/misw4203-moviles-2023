@@ -20,7 +20,8 @@ class GetAlbums(context: Context) {
             )
             return albums
         } else {
-            repository.getAllAlbumsFromDB()
+            val response = repository.getAllAlbumsFromDB()
+            response
         }
     }
 }

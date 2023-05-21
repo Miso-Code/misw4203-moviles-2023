@@ -1,66 +1,62 @@
-package com.example.misw4203moviles2023.ui.view
+package com.example.misw4203moviles2023.core.view
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentFactory
 import androidx.fragment.app.testing.launchFragment
 import androidx.lifecycle.MutableLiveData
 import com.example.misw4203moviles2023.mockPerformer
 import com.example.misw4203moviles2023.test.TestApplication
-import com.example.misw4203moviles2023.ui.viewModel.PerformerListViewModel
+import com.example.misw4203moviles2023.ui.view.PerformerDetail
+import com.example.misw4203moviles2023.ui.viewModel.PerformerDetailViewModel
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.Mockito
+import org.mockito.Mockito.mock
+import org.mockito.Mockito.`when`
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 
 @Config(application = TestApplication::class)
 @RunWith(RobolectricTestRunner::class)
-class PerformerListTest {
+class PerformerDetailTest {
 
     @get:Rule
     val instantTaskExecutorRule = InstantTaskExecutorRule()
 
-    private lateinit var viewModel: PerformerListViewModel
+    private lateinit var viewModel: PerformerDetailViewModel
 
     @Before
     fun setup() {
-        viewModel = Mockito.mock(PerformerListViewModel::class.java)
+        viewModel = mock(PerformerDetailViewModel::class.java)
     }
 
     @Test
-    fun testPerformerListViewModel() {
-        val performerList = listOf(
-            mockPerformer(
-                1,
-                "Performer Name",
-                "Performer Description",
-                "Performer Genre",
-            ),
-            mockPerformer(
-                2,
-                "Performer Name",
-                "Performer Description",
-                "Performer Genre",
-            ),
+    fun testPerformerDetailViewModel() {
+        val performer = mockPerformer(
+            1,
+            "Performer Name",
+            "Performer Description",
+            "Performer.png",
         )
 
-        Mockito.`when`(viewModel.performerModel).thenReturn(MutableLiveData(performerList))
+        `when`(viewModel.performerModel).thenReturn(MutableLiveData(performer))
 
-        val performerListFragment = PerformerList(viewModel)
+        val performerDetailFragment = PerformerDetail(viewModel)
 
         // Use launchFragment to create the fragment in isolation
 
-        launchFragment<PerformerList>(
+        launchFragment<PerformerDetail>(
             factory = object : FragmentFactory() {
                 override fun instantiate(classLoader: ClassLoader, className: String) =
-                    performerListFragment
+                    performerDetailFragment
             },
+            fragmentArgs = bundleOf("performerId" to 1),
         )
 
         // Verify that the view model onCreate() method was called with the correct performer ID
-        assertEquals(performerList, viewModel.performerModel.value)
+        assertEquals(performer, viewModel.performerModel.value)
     }
 }

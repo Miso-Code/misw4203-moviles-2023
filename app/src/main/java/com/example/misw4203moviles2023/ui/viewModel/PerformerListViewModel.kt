@@ -21,8 +21,8 @@ class PerformerListViewModel(application: Application) : AndroidViewModel(applic
         viewModelScope.launch {
             isLoading.postValue(true)
             val result = getPerformers()
-            val sortedResult = result?.sortedByDescending { it.name }
-            if (sortedResult?.isNotEmpty() == true) {
+            val sortedResult = result.sortedByDescending { it.name }
+            if (sortedResult.isNotEmpty()) {
                 performerModel.postValue(sortedResult)
                 isLoading.postValue(false)
             }

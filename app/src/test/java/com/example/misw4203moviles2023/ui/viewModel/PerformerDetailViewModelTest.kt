@@ -2,7 +2,7 @@ package com.example.misw4203moviles2023.ui.viewModel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.platform.app.InstrumentationRegistry
-import com.example.misw4203moviles2023.domain.performer.GetPerformers
+import com.example.misw4203moviles2023.domain.performer.GetPerformerById
 import com.example.misw4203moviles2023.mockPerformer
 import com.example.misw4203moviles2023.test.TestApplication
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -14,57 +14,52 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
-import org.mockito.MockitoAnnotations
+import org.mockito.junit.MockitoJUnit
+import org.mockito.junit.MockitoRule
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 
 @Config(application = TestApplication::class)
 @RunWith(RobolectricTestRunner::class)
-class PerformerListViewModelTest {
+class PerformerDetailViewModelTest {
 
     @get:Rule
     val instantTaskRule = InstantTaskExecutorRule()
 
-    @Mock
-    lateinit var getPerformers: GetPerformers
+    @get:Rule
+    val mockitoRule: MockitoRule = MockitoJUnit.rule()
 
-    private lateinit var viewModel: PerformerListViewModel
+    @Mock
+    lateinit var getPerformerById: GetPerformerById
+
+    private lateinit var viewModel: PerformerDetailViewModel
 
     @Before
     fun setUp() {
-        MockitoAnnotations.openMocks(this)
-        val app = InstrumentationRegistry.getInstrumentation().targetContext.applicationContext as TestApplication
-        viewModel = PerformerListViewModel(app)
-        viewModel.getPerformers = getPerformers
+        val app =
+            InstrumentationRegistry.getInstrumentation().targetContext.applicationContext as TestApplication
+        viewModel = PerformerDetailViewModel(app)
+        viewModel.getPerformerById = getPerformerById
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun testOnCreate() = runTest {
         val performerId = 1
-        val releaseDate = "2023-05-09T10:00:00Z"
-        val performers = listOf(
-            mockPerformer(
-                performerId,
-                "Performer Title2",
-                "Artist Name2",
-                releaseDate,
-            ),
-            mockPerformer(
-                performerId,
-                "Performer Title2",
-                "Artist Name2",
-                releaseDate,
-            ),
+        val performer = mockPerformer(
+            performerId,
+            "Performer Title",
+            "Performer description",
+            "performer.png",
         )
 
         // Set up the mocked result
-        `when`(viewModel.getPerformers()).thenReturn(performers)
+        `when`(viewModel.getPerformerById(1)).thenReturn(performer)
 
         // Call the method under test
-        viewModel.onCreate()
+        viewModel.onCreate(performerId)
 
         // Verify that the performerModel is set correctly
-        assertEquals(performers, viewModel.performerModel.value)
+        assertEquals(performer, viewModel.performerModel.value)
     }
 }

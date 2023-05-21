@@ -3,6 +3,7 @@ package com.example.misw4203moviles2023.data.network
 import com.example.misw4203moviles2023.data.model.AlbumModel
 import com.example.misw4203moviles2023.test.TestApplication
 import junit.framework.TestCase.assertEquals
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
@@ -25,6 +26,7 @@ class AlbumServiceTest {
         albumService = AlbumService(apiClient)
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun testGetAlbums() = runTest {
         // Given
@@ -41,6 +43,7 @@ class AlbumServiceTest {
         assertEquals(albums, result)
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun testGetAlbumById() = runTest {
         // Given

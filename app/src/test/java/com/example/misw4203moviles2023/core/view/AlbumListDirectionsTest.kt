@@ -1,6 +1,7 @@
-package com.example.misw4203moviles2023.ui.view
+package com.example.misw4203moviles2023.core.view
 
 import com.example.misw4203moviles2023.R
+import com.example.misw4203moviles2023.ui.view.AlbumListDirections
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

@@ -4,7 +4,6 @@ import com.example.misw4203moviles2023.data.database.entities.PerformerWithAlbum
 import com.example.misw4203moviles2023.data.model.PerformerModel
 import com.example.misw4203moviles2023.domain.album.model.Album
 import com.example.misw4203moviles2023.domain.album.model.performerToDomain
-import com.example.misw4203moviles2023.domain.album.model.toDomain
 
 data class Performer(
     val id: Int,
@@ -20,7 +19,7 @@ fun PerformerModel.toDomain() =
 fun PerformerWithAlbums.toDomain() = Performer(
     performer.id,
     performer.name,
-    performer.name,
+    performer.description,
     performer.image,
-    albums.map { it.toDomain(emptyList()) },
+    albums.map { it.performerToDomain() },
 )

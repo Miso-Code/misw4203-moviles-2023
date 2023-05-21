@@ -19,7 +19,7 @@ fun matchToolbarTitle(
 
 private fun withToolbarTitle(
     textMatcher: Matcher<CharSequence>,
-): Matcher<Any?>? {
+): Matcher<Any?> {
     return object : BoundedMatcher<Any?, Toolbar>(Toolbar::class.java) {
         override fun matchesSafely(toolbar: Toolbar): Boolean {
             return textMatcher.matches(toolbar.title)

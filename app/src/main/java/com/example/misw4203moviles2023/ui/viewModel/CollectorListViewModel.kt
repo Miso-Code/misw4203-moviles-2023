@@ -17,8 +17,8 @@ class CollectorListViewModel : ViewModel() {
         viewModelScope.launch {
             isLoading.postValue(true)
             val result = getCollectors()
-            val sortedResult = result?.sortedByDescending { it.name }
-            if (result?.isNotEmpty() == true) {
+            val sortedResult = result.sortedByDescending { it.name }
+            if (result.isNotEmpty()) {
                 collectorModel.postValue(sortedResult)
                 isLoading.postValue(false)
             }

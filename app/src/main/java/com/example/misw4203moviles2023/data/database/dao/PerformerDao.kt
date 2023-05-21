@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Transaction
 import com.example.misw4203moviles2023.data.database.entities.PerformerAlbumCrossRefEntity
 import com.example.misw4203moviles2023.data.database.entities.PerformerEntity
 import com.example.misw4203moviles2023.data.database.entities.PerformerWithAlbums
@@ -24,4 +25,8 @@ interface PerformerDao {
 
     @Query("Delete from  track_table")
     suspend fun deleteAllPerformers()
+
+    @Transaction
+    @Query("SELECT * FROM performer_table WHERE performer_table.performer_id = :id ")
+    suspend fun getPerformerById(id: Int): PerformerWithAlbums
 }
