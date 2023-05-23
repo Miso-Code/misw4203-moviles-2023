@@ -9,6 +9,7 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -90,10 +91,17 @@ class AlbumDetail(private val viewModel: AlbumDetailViewModel? = null) : Fragmen
             trackRecyclerView.adapter = trackAdapter
             progressBar.visibility = View.GONE
             trackRecyclerView.visibility = View.VISIBLE
+
+            // add click listener to button to add a track to the playlist
+            binding.addTrackButton.setOnClickListener { _ ->
+                AlbumDetailDirections.actionAlbumDetailToAlbumAddTrack(it?.id ?: -1).also { action ->
+                    view.findNavController().navigate(action)
+                }
+            }
         }
     }
 
-    @Suppress("DEPRECATION")
+    @Deprecated("Deprecated in Java")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         @Suppress("DEPRECATION")
         super.onActivityCreated(savedInstanceState)

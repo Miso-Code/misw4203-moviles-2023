@@ -7,10 +7,13 @@ import com.example.misw4203moviles2023.data.database.entities.AlbumEntity
 import com.example.misw4203moviles2023.data.database.entities.TrackEntity
 import com.example.misw4203moviles2023.data.model.AlbumModel
 import com.example.misw4203moviles2023.data.model.AlbumModelCreate
+import com.example.misw4203moviles2023.data.model.TrackModelCreate
 import com.example.misw4203moviles2023.data.network.AlbumService
 import com.example.misw4203moviles2023.domain.album.model.Album
+import com.example.misw4203moviles2023.domain.album.model.Track
 import com.example.misw4203moviles2023.domain.album.model.toDomain
 
+@Suppress("TooManyFunctions")
 class AlbumRepository(service: AlbumService? = null, context: Context) {
     private val api = service ?: AlbumService()
     private val dao = DataBaseService(context)
@@ -70,5 +73,27 @@ class AlbumRepository(service: AlbumService? = null, context: Context) {
 
     suspend fun deleteAlbumByIdFromDB(id: Int) {
         dao.deleteAlbumByIdDao(id)
+    }
+
+    suspend fun addTrackToAlbumApi(albumId: Int, track: Track): Track? {
+        return api.addTrackToAlbum(
+            albumId,
+            TrackModelCreate(
+                name = track.name,
+                duration = track.duration,
+            ),
+        )?.toDomain()
+    }
+
+    suspend fun addTrackToAlbumDB(track: TrackEntity) {
+        dao.insertTracksDao(listOf(track))
+    }
+
+    suspend fun deleteTrackFromAlbumApi(albumId: Int, trackId: Int): Unit? {
+        return api.deleteTrackFromAlbum(albumId, trackId)
+    }
+
+    suspend fun deleteTrackFromAlbumDB(trackId: Int) {
+        dao.deleteTrackByIdDao(trackId)
     }
 }
