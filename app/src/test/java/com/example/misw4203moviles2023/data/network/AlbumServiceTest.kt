@@ -1,6 +1,8 @@
 package com.example.misw4203moviles2023.data.network
 
 import com.example.misw4203moviles2023.data.model.AlbumModel
+import com.example.misw4203moviles2023.data.model.AlbumModelCreate
+import com.example.misw4203moviles2023.data.model.AlbumModelNoTracks
 import com.example.misw4203moviles2023.test.TestApplication
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -55,5 +57,56 @@ class AlbumServiceTest {
 
         // Then
         assertEquals(album, result)
+    }
+
+    @Test
+    fun testCreateAlbum() = runTest {
+        // Given
+        val album = AlbumModelCreate(
+            "Album 1",
+            "cover1.jpg",
+            "2022-01-01",
+            "",
+            "",
+            "",
+        )
+        val albumModel = AlbumModelNoTracks(
+            1,
+            album.name,
+            album.cover,
+            album.releaseDate,
+            album.description,
+            album.genre,
+            album.description,
+        )
+
+        whenever(apiClient.createAlbum(album)).thenReturn(Response.success(albumModel))
+
+        // When
+        val result = albumService.createAlbum(album)
+
+        // Then assert the result is ok
+        assertEquals(albumModel, result)
+    }
+
+    @Test
+    fun testDeleteAlbum() = runTest {
+        // Given
+        val album = AlbumModelNoTracks(
+            1,
+            "Album 1",
+            "cover1.jpg",
+            "2022-01-01",
+            "",
+            "",
+            "",
+        )
+        whenever(apiClient.deleteAlbumById(album.id)).thenReturn(Response.success(Unit))
+
+        // When
+        val result = albumService.deleteAlbumById(album.id)
+
+        // Then assert the result is ok
+        assertEquals(Unit, result)
     }
 }

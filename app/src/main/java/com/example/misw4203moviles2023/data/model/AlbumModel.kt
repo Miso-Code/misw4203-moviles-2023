@@ -10,3 +10,22 @@ data class AlbumModel(
     val recordLabel: String,
     val tracks: List<TrackModel>,
 )
+
+data class AlbumModelCreate(
+    val name: String,
+    val cover: String,
+    var releaseDate: String,
+    val description: String,
+    val genre: String,
+    val recordLabel: String,
+)
+
+data class AlbumModelNoTracks(
+    val id: Int,
+    val name: String,
+    val cover: String,
+    var releaseDate: String,
+    val description: String,
+    val genre: String,
+    val recordLabel: String,
+)
