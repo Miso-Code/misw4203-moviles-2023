@@ -3,6 +3,8 @@ package com.example.misw4203moviles2023.data.network
 import com.example.misw4203moviles2023.data.model.AlbumModel
 import com.example.misw4203moviles2023.data.model.AlbumModelCreate
 import com.example.misw4203moviles2023.data.model.AlbumModelNoTracks
+import com.example.misw4203moviles2023.data.model.TrackModel
+import com.example.misw4203moviles2023.data.model.TrackModelCreate
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -22,4 +24,16 @@ interface AlbumApiClient {
 
     @DELETE("/albums/{id}")
     suspend fun deleteAlbumById(@Path("id") id: Int): Response<Unit>
+
+    @POST("/albums/{id}/tracks")
+    suspend fun addTrackToAlbum(
+        @Path("id") albumId: Int,
+        @Body track: TrackModelCreate,
+    ): Response<TrackModel>
+
+    @DELETE("/albums/{id}/tracks/{trackId}")
+    suspend fun deleteTrackFromAlbum(
+        @Path("id") albumId: Int,
+        @Path("trackId") trackId: Int,
+    ): Response<Unit>
 }

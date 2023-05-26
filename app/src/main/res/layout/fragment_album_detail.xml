@@ -80,6 +80,15 @@
                 android:scrollbars="vertical"
                 android:padding="8dp"
                 android:clipToPadding="false" />
+            <Button
+                android:id="@+id/addTrackButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/track_name"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -4,6 +4,8 @@ import androidx.test.platform.app.InstrumentationRegistry
 import com.example.misw4203moviles2023.data.model.AlbumModel
 import com.example.misw4203moviles2023.data.model.AlbumModelCreate
 import com.example.misw4203moviles2023.data.model.AlbumModelNoTracks
+import com.example.misw4203moviles2023.data.model.TrackModel
+import com.example.misw4203moviles2023.data.model.TrackModelCreate
 import com.example.misw4203moviles2023.data.network.AlbumService
 import com.example.misw4203moviles2023.domain.album.model.Album
 import com.example.misw4203moviles2023.domain.album.model.toDomain
@@ -21,6 +23,7 @@ import org.mockito.kotlin.whenever
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 
+@OptIn(ExperimentalCoroutinesApi::class)
 @Config(application = TestApplication::class)
 @RunWith(RobolectricTestRunner::class)
 class AlbumRepositoryTest {
@@ -37,7 +40,6 @@ class AlbumRepositoryTest {
         repository = AlbumRepository(mockService, context)
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun `getAllAlbums should return empty list when api returns null`() = runTest {
         // Given
@@ -50,7 +52,6 @@ class AlbumRepositoryTest {
         assertTrue(result.isEmpty())
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun `getAllAlbums should return list of albums when api returns non-null response`() = runTest {
         // Given
@@ -72,7 +73,6 @@ class AlbumRepositoryTest {
         assertEquals(albums, result)
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun `getAlbumById should return default album when api returns null`() = runTest {
         // Given
@@ -88,7 +88,6 @@ class AlbumRepositoryTest {
         assertEquals(defaultAlbum, result)
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun `getAlbumById should return album when api returns non-null response`() = runTest {
         // Given
@@ -133,5 +132,24 @@ class AlbumRepositoryTest {
 
         // Then
         assertEquals(album, result)
+    }
+
+    @Test
+    fun `addTrack should return a track when api returns non-null response`() = runTest {
+        // Given
+        val albumModel =
+            AlbumModel(1, "Album 1", "cover1.jpg", "2022-01-01", "", "", "", emptyList())
+        val trackCreate = TrackModelCreate("Track 1", "2022-01-01")
+
+        val track = TrackModel(1, trackCreate.name, trackCreate.duration)
+
+        whenever(mockService.addTrackToAlbum(albumModel.id, trackCreate)).thenReturn(track)
+
+        // When
+        val album = albumModel.toDomain()
+        val result = repository.addTrackToAlbumApi(album.id, track.toDomain())
+
+        // Then
+        assertEquals(track.toDomain(), result)
     }
 }

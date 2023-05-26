@@ -15,6 +15,7 @@ class TrackAdapter(private val trackList: List<Track>) :
         fun bind(track: Track) {
             binding.trackName.text = track.name
             binding.trackDuration.text = track.duration
+            binding.trackId.text = track.id.toString()
         }
     }
 

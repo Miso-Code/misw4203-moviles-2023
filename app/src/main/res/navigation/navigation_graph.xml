@@ -27,6 +27,13 @@
             android:name="albumId"
             android:defaultValue="-1"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_albumDetail_to_albumAddTrack"
+            app:destination="@id/albumAddTrack">
+            <argument
+                android:name="albumId"
+                app:argType="integer" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/albumCreate"
@@ -90,5 +97,10 @@
         android:id="@+id/albumAddTrack"
         android:name="com.example.misw4203moviles2023.ui.view.AlbumAddTrack"
         android:label="fragment_album_add_track"
-        tools:layout="@layout/fragment_album_add_track" />
+        tools:layout="@layout/fragment_album_add_track" >
+        <argument
+            android:name="albumId"
+            android:defaultValue="-1"
+            app:argType="integer" />
+    </fragment>
 </navigation>

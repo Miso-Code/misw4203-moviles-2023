@@ -46,6 +46,18 @@ class DataBaseService(applicationContext: Context) {
         albumDao.insertAllAlbums(albums)
     }
 
+    suspend fun getAllTracksDao(): List<TrackEntity> {
+        return trackDao.getAllTracks()
+    }
+
+    suspend fun deleteTracksDao() {
+        trackDao.deleteAllTracks()
+    }
+
+    suspend fun deleteTrackByIdDao(id: Int) {
+        trackDao.deleteTrackById(id)
+    }
+
     suspend fun insertTracksDao(tracks: List<TrackEntity>) {
         trackDao.insertAllTracks(tracks)
     }

@@ -5,6 +5,7 @@ import android.view.Gravity
 import android.view.View
 import android.widget.DatePicker
 import android.widget.TextView
+import android.widget.TimePicker
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onData
@@ -24,12 +25,15 @@ import androidx.test.espresso.matcher.RootMatchers.isPlatformPopup
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.isEnabled
 import androidx.test.espresso.matcher.ViewMatchers.withClassName
+import androidx.test.espresso.matcher.ViewMatchers.withContentDescription
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.misw4203moviles2023.domain.album.DeleteAlbumById
+import com.example.misw4203moviles2023.domain.album.DeleteTrackFromAlbumById
 import com.example.misw4203moviles2023.domain.album.model.Album
+import com.example.misw4203moviles2023.domain.album.model.Track
 import com.example.misw4203moviles2023.ui.view.MainActivity
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.CoreMatchers.allOf
@@ -49,7 +53,10 @@ import java.util.Collections
 @RunWith(AndroidJUnit4::class)
 class TestAlbum {
     private var albumIdList: List<Int> = Collections.emptyList()
+    private var trackIdList: List<Int> = Collections.emptyList()
+
     val deleteAlbumById = DeleteAlbumById(ApplicationProvider.getApplicationContext())
+    val deleteTrackFromAlbumById = DeleteTrackFromAlbumById(ApplicationProvider.getApplicationContext())
 
     @get:Rule
     val activityTestRule = ActivityScenarioRule(
@@ -60,6 +67,9 @@ class TestAlbum {
     fun teardown() = runBlocking {
         if (albumIdList.isNotEmpty()) {
             for (albumId in albumIdList) {
+                for (trackId in trackIdList) {
+                    deleteTrackFromAlbumById(albumId, trackId)
+                }
                 deleteAlbumById(albumId)
             }
         }
@@ -146,7 +156,7 @@ class TestAlbum {
     }
 
     @Test
-    fun test_create_album_show_in_list_and_detail() {
+    fun test_create_album_with_track_show_in_list_and_detail() {
         Thread.sleep(1000)
         onView(withId(R.id.drawer_layout)).check(matches(DrawerMatchers.isClosed(Gravity.LEFT))) // Left Drawer should be closed.
             .perform(DrawerActions.open()) // Open Drawer
@@ -312,6 +322,81 @@ class TestAlbum {
                 val albumId = _view.text.toString().toInt()
                 albumIdList = albumIdList + albumId
             }
+        }
+
+        // click on the add track button
+        onView(withId(R.id.addTrackButton)).perform(click())
+
+        Thread.sleep(1000)
+        expectedViewTitle = ApplicationProvider.getApplicationContext<Application>()
+            .getString(R.string.menu_add_track)
+        matchToolbarTitle(expectedViewTitle)
+
+        onView(withId(R.id.track_name_edit_text)).check(matches(withText("")))
+        onView(withId(R.id.track_duration_edit_text)).check(matches(withText("")))
+
+        onView(withId(R.id.track_create_button)).check(matches(not(isEnabled())))
+        onView(withId(R.id.track_create_loading_spinner)).check(matches(not(isDisplayed())))
+
+        val track = Track(
+            id = -1,
+            name = "Track 1",
+            duration = "03:00",
+        )
+
+        onView(withId(R.id.track_name_edit_text)).perform(typeText(track.name))
+
+        onView(withId(R.id.track_duration_edit_text)).perform(click())
+
+        val time = track.duration.split(":")
+        val minutes = time[0].toInt()
+        val seconds = time[1].toInt()
+        onView(withClassName(Matchers.equalTo(TimePicker::class.java.name))).perform(
+            PickerActions.setTime(
+                minutes,
+                seconds,
+            ),
+        )
+
+        onView(withId(android.R.id.button1)).perform(click())
+
+        onView(withId(R.id.track_duration_edit_text)).perform(closeSoftKeyboard())
+
+        onView(withId(R.id.track_create_button)).check(matches(isEnabled()))
+
+        onView(withId(R.id.track_create_button)).perform(scrollTo())
+
+        onView(withId(R.id.track_create_button)).perform(click())
+
+        onView(withContentDescription("Navigate up")).perform(click())
+
+        Thread.sleep(1000)
+
+        onView(withId(R.id.albumDetailImageView)).check(matches(isDisplayed()))
+        onView(withId(R.id.albumGenre)).check(matches(isDisplayed()))
+        onView(withId(R.id.albumRecordLabel)).check(matches(isDisplayed()))
+        onView(withId(R.id.albumDescription)).check(matches(isDisplayed()))
+        onView(withId(R.id.albumTracks)).check(matches(isDisplayed()))
+
+        onView(withId(R.id.track_list_recycler_view)).check { _view, _ ->
+            val recyclerView = _view as RecyclerView
+
+            assertThat(recyclerView.adapter!!.itemCount, `is`(1))
+
+            val trackRow: View = recyclerView.getChildAt(0)
+
+            assertThat(trackRow.isShown, `is`(true))
+
+            assertThat(trackRow.findViewById<View>(R.id.track_image).isShown, `is`(true))
+
+            assertThat(trackRow.findViewById<View>(R.id.track_name).isShown, `is`(true))
+            assertThat(trackRow.findViewById<TextView>(R.id.track_name).text.toString(), `is`(track.name))
+
+            assertThat(trackRow.findViewById<View>(R.id.track_duration).isShown, `is`(true))
+            assertThat(trackRow.findViewById<TextView>(R.id.track_duration).text.toString(), `is`(track.duration))
+
+            val trackId = trackRow.findViewById<TextView>(R.id.trackId).text.toString().toInt()
+            trackIdList = trackIdList + trackId
         }
     }
 }
