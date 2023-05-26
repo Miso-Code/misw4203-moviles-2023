@@ -7,17 +7,17 @@ import com.example.misw4203moviles2023.domain.collector.model.Collector
 import com.example.misw4203moviles2023.domain.collector.model.toDomain
 
 class GetCollectors(context: Context) {
-	private val repository = CollectorRepository(null, context)
+    private val repository = CollectorRepository(null, context)
 
-	suspend operator fun invoke(): List<Collector> {
-		val collectors: List<CollectorModel> = repository.getAllCollectorsFromApi()
+    suspend operator fun invoke(): List<Collector> {
+        val collectors: List<CollectorModel> = repository.getAllCollectorsFromApi()
 
-		return if (collectors.isNotEmpty()) {
-			repository.clearCollectors()
-			repository.insertCollectors(collectors.map { it.toDomain() })
-			return collectors.map { it.toDomain() }
-		} else {
-			repository.getAllCollectorsFromDB()
-		}
-	}
+        return if (collectors.isNotEmpty()) {
+            repository.clearCollectors()
+            repository.insertCollectors(collectors.map { it.toDomain() })
+            return collectors.map { it.toDomain() }
+        } else {
+            repository.getAllCollectorsFromDB()
+        }
+    }
 }

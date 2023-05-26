@@ -13,22 +13,22 @@ import com.example.misw4203moviles2023.data.database.entities.PerformerEntity
 import com.example.misw4203moviles2023.data.database.entities.TrackEntity
 
 @Database(
-	entities = [
-		AlbumEntity::class,
-		TrackEntity::class,
-		PerformerEntity::class,
-		PerformerAlbumCrossRefEntity::class,
-		CollectorEntity::class
-	],
-	version = 2,
-	exportSchema = false,
+    entities = [
+        AlbumEntity::class,
+        TrackEntity::class,
+        PerformerEntity::class,
+        PerformerAlbumCrossRefEntity::class,
+        CollectorEntity::class,
+    ],
+    version = 2,
+    exportSchema = false,
 )
 abstract class AlbumDatabase : RoomDatabase() {
-	abstract fun getAlbumsDao(): AlbumDao
+    abstract fun getAlbumsDao(): AlbumDao
 
-	abstract fun getTracksDao(): TrackDao
+    abstract fun getTracksDao(): TrackDao
 
-	abstract fun getPerformerDao(): PerformerDao
+    abstract fun getPerformerDao(): PerformerDao
 
-	abstract fun getCollectorDao(): CollectorDao
+    abstract fun getCollectorDao(): CollectorDao
 }

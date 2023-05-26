@@ -11,7 +11,7 @@ interface OnCollectorClickListener {
 }
 
 class CollectorAdapter(
-    private val collectorList: List<Collector>
+    private val collectorList: List<Collector>,
 ) :
     RecyclerView.Adapter<CollectorAdapter.CollectorViewHolder>() {
 
