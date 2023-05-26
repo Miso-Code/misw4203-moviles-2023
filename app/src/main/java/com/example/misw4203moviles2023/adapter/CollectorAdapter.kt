@@ -3,15 +3,15 @@ package com.example.misw4203moviles2023.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.misw4203moviles2023.data.model.CollectorModel
 import com.example.misw4203moviles2023.databinding.CollectorRowBinding
+import com.example.misw4203moviles2023.domain.collector.model.Collector
 
 interface OnCollectorClickListener {
-    fun onItemClick(position: Int, collector: CollectorModel)
+    fun onItemClick(position: Int, collector: Collector)
 }
 
 class CollectorAdapter(
-    private val collectorList: List<CollectorModel>,
+    private val collectorList: List<Collector>,
 ) :
     RecyclerView.Adapter<CollectorAdapter.CollectorViewHolder>() {
 
@@ -20,7 +20,7 @@ class CollectorAdapter(
     inner class CollectorViewHolder(private val binding: CollectorRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(collector: CollectorModel) {
+        fun bind(collector: Collector) {
             binding.collectorName.text = collector.name
         }
     }

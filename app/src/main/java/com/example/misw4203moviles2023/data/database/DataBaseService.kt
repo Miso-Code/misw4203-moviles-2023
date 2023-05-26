@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.example.misw4203moviles2023.data.database.entities.AlbumEntity
 import com.example.misw4203moviles2023.data.database.entities.AlbumWithTracksEntity
+import com.example.misw4203moviles2023.data.database.entities.CollectorEntity
 import com.example.misw4203moviles2023.data.database.entities.PerformerAlbumCrossRefEntity
 import com.example.misw4203moviles2023.data.database.entities.PerformerEntity
 import com.example.misw4203moviles2023.data.database.entities.PerformerWithAlbums
@@ -23,6 +24,7 @@ class DataBaseService(applicationContext: Context) {
     private val albumDao = db.getAlbumsDao()
     private val trackDao = db.getTracksDao()
     private val performerDao = db.getPerformerDao()
+    private val collectorDao = db.getCollectorDao()
 
     suspend fun getAllAlbumsDao(): List<AlbumWithTracksEntity> {
         return albumDao.getAllAlbums()
@@ -44,24 +46,12 @@ class DataBaseService(applicationContext: Context) {
         albumDao.insertAllAlbums(albums)
     }
 
-    suspend fun getAllTracksDao(): List<TrackEntity> {
-        return trackDao.getAllTracks()
-    }
-
-    suspend fun deleteTracksDao() {
-        trackDao.deleteAllTracks()
-    }
-
     suspend fun insertTracksDao(tracks: List<TrackEntity>) {
         trackDao.insertAllTracks(tracks)
     }
 
     suspend fun insertPerformerDao(performer: List<PerformerEntity>) {
         performerDao.insertAllPerformers(performer)
-    }
-
-    suspend fun insertPerformerWithAlbumsDao(performerAlbum: List<PerformerAlbumCrossRefEntity>) {
-        performerDao.insertAllPerformersWithAlbums(performerAlbum)
     }
 
     suspend fun insertPerformerWithAlbumDao(performerAlbum: PerformerAlbumCrossRefEntity) {
@@ -78,5 +68,17 @@ class DataBaseService(applicationContext: Context) {
 
     suspend fun deleteAllPerformerDao() {
         performerDao.deleteAllPerformers()
+    }
+
+    suspend fun getAllCollectorDao(): List<CollectorEntity> {
+        return collectorDao.getAllCollectors()
+    }
+
+    suspend fun deleteAllCollectorDao() {
+        collectorDao.deleteAllCollectors()
+    }
+
+    suspend fun insertCollectorDao(collectors: List<CollectorEntity>) {
+        collectorDao.insertAllCollectors(collectors)
     }
 }
