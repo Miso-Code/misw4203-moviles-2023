@@ -7,8 +7,8 @@ import com.example.misw4203moviles2023.domain.album.model.Album
 import com.example.misw4203moviles2023.domain.performer.model.Performer
 
 class GetPerformers(context: Context) {
-    private val performerRepository = PerformerRepository(null, context)
-    private val albumRepository = AlbumRepository(null, context)
+    private val performerRepository = PerformerRepository(context)
+    private val albumRepository = AlbumRepository(context)
 
     suspend operator fun invoke(): List<Performer> {
         val performers: List<Performer> = performerRepository.getPerformersFromApi()

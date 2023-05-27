@@ -14,9 +14,13 @@ import com.example.misw4203moviles2023.domain.album.model.Track
 import com.example.misw4203moviles2023.domain.album.model.toDomain
 
 @Suppress("TooManyFunctions")
-class AlbumRepository(service: AlbumService? = null, context: Context) {
+class AlbumRepository(
+    context: Context,
+    service: AlbumService? = null,
+    dbService: DataBaseService? = null,
+) {
     private val api = service ?: AlbumService()
-    private val dao = DataBaseService(context)
+    private val dao = dbService ?: DataBaseService(context)
     suspend fun getAllAlbumsFromApi(): List<Album> {
         val response: List<AlbumModel> = api.getAlbums()
         return response.map { it.toDomain() }

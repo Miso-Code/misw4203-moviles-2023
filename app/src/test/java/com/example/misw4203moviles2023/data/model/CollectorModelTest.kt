@@ -43,4 +43,39 @@ class CollectorModelTest {
                 "email=collector@email.com, albums=[], performers=[])"
         assertEquals(expected, result)
     }
+
+    @Test
+    fun testCollectorAlbumModelToString() {
+        // Create an instance of the class under test
+        val collectorAlbum = CollectorAlbumModel(
+            collector = CollectorModel(
+                id = 1,
+                name = "Collector Name",
+                telephone = "330898",
+                email = "collector@email.test",
+            ),
+            album = AlbumModel(
+                id = 1,
+                name = "Album Title",
+                cover = "album_cover.jpg",
+                releaseDate = "2021-01-01",
+                genre = "Album Genre",
+                description = "Album Description",
+                recordLabel = "Album Record Label",
+                tracks = emptyList(),
+            ),
+        )
+
+        // Call the method under test
+        val result = collectorAlbum.toString()
+
+        // Assert that the result is in the expected format
+        val expected =
+            "CollectorAlbumModel(collector=CollectorModel(id=1, name=Collector Name, " +
+                "telephone=330898, email=collector@email.test, " +
+                "albums=[], performers=[]), album=AlbumModel(id=1, name=Album Title, " +
+                "cover=album_cover.jpg, releaseDate=2021-01-01, description=Album Description, " +
+                "genre=Album Genre, recordLabel=Album Record Label, tracks=[]))"
+        assertEquals(expected, result)
+    }
 }

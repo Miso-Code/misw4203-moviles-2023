@@ -45,13 +45,14 @@ fun mockPerformer(
     name: String,
     description: String,
     image: String,
+    albums: List<Album>? = emptyList(),
 ): Performer {
     val performer = Mockito.mock(Performer::class.java)
     Mockito.`when`(performer.id).thenReturn(id)
     Mockito.`when`(performer.name).thenReturn(name)
     Mockito.`when`(performer.description).thenReturn(description)
     Mockito.`when`(performer.description).thenReturn(image)
-    Mockito.`when`(performer.albums).thenReturn(emptyList())
+    Mockito.`when`(performer.albums).thenReturn(albums)
     return performer
 }
 

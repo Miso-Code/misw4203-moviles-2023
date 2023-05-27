@@ -5,7 +5,7 @@ import com.example.misw4203moviles2023.data.CollectorRepository
 import com.example.misw4203moviles2023.domain.collector.model.Collector
 
 class GetCollectorById(context: Context) {
-    private val repository = CollectorRepository(null, context)
+    private val repository = CollectorRepository(context)
 
     suspend operator fun invoke(id: Int): Collector {
         val collector: Collector? = repository.getCollectorByIdFromApi(id)
