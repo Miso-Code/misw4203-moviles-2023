@@ -56,6 +56,11 @@ class PerformerDetail(private val viewModel: PerformerDetailViewModel? = null) :
         _viewModel = viewModel ?: ViewModelProvider(this)[PerformerDetailViewModel::class.java]
         _viewModel.onCreate(args.performerId)
 
+        setupViews()
+        observeDataChanges(view)
+    }
+
+    private fun setupViews() {
         progressBar = binding.progressBarPerformerDetail
 
         albumRecyclerView = binding.performerListRecyclerView
@@ -67,7 +72,9 @@ class PerformerDetail(private val viewModel: PerformerDetailViewModel? = null) :
         binding.performerDescription.visibility = View.GONE
         binding.performerAlbums.visibility = View.GONE
         binding.performerDetailImageView.visibility = View.GONE
+    }
 
+    private fun observeDataChanges(view: View) {
         _viewModel.performerModel.observe(viewLifecycleOwner) {
             if (it?.albums?.isEmpty() != true) {
                 binding.performerAlbums.visibility = View.VISIBLE
