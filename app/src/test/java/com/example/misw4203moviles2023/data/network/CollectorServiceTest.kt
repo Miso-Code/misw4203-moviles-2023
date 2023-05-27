@@ -48,6 +48,16 @@ class CollectorServiceTest {
         // Given
         val collector = CollectorModel(1, "Collector 1", "3308984", "collector@email.com")
         whenever(apiClient.getCollectorById(collector.id)).thenReturn(Response.success(collector))
+        whenever(apiClient.getCollectorAlbumsById(collector.id)).thenReturn(
+            Response.success(
+                emptyList(),
+            ),
+        )
+        whenever(apiClient.getCollectorPerformersById(collector.id)).thenReturn(
+            Response.success(
+                emptyList(),
+            ),
+        )
 
         // When
         val result = collectorService.getCollectorsById(collector.id)

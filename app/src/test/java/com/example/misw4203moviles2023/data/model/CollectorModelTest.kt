@@ -30,6 +30,8 @@ class CollectorModelTest {
             name = "Collector Name",
             telephone = "330898",
             email = "collector@email.com",
+            albums = emptyList(),
+            performers = emptyList(),
         )
 
         // Call the method under test
@@ -37,7 +39,8 @@ class CollectorModelTest {
 
         // Assert that the result is in the expected format
         val expected =
-            "CollectorModel(id=1, name=Collector Name, telephone=330898, email=collector@email.com)"
+            "CollectorModel(id=1, name=Collector Name, telephone=330898, " +
+                "email=collector@email.com, albums=[], performers=[])"
         assertEquals(expected, result)
     }
 }

@@ -4,7 +4,10 @@ import android.content.Context
 import androidx.room.Room
 import com.example.misw4203moviles2023.data.database.entities.AlbumEntity
 import com.example.misw4203moviles2023.data.database.entities.AlbumWithTracksEntity
+import com.example.misw4203moviles2023.data.database.entities.CollectorAlbumCrossRefEntity
 import com.example.misw4203moviles2023.data.database.entities.CollectorEntity
+import com.example.misw4203moviles2023.data.database.entities.CollectorPerformerCrossRefEntity
+import com.example.misw4203moviles2023.data.database.entities.CollectorWithAlbumsAndPerformers
 import com.example.misw4203moviles2023.data.database.entities.PerformerAlbumCrossRefEntity
 import com.example.misw4203moviles2023.data.database.entities.PerformerEntity
 import com.example.misw4203moviles2023.data.database.entities.PerformerWithAlbums
@@ -19,7 +22,7 @@ class DataBaseService(applicationContext: Context) {
         applicationContext,
         AlbumDatabase::class.java,
         DB_NAME,
-    ).build()
+    ).fallbackToDestructiveMigration().build()
 
     private val albumDao = db.getAlbumsDao()
     private val trackDao = db.getTracksDao()
@@ -90,7 +93,23 @@ class DataBaseService(applicationContext: Context) {
         collectorDao.deleteAllCollectors()
     }
 
-    suspend fun insertCollectorDao(collectors: List<CollectorEntity>) {
+    suspend fun insertCollectorsDao(collectors: List<CollectorEntity>) {
         collectorDao.insertAllCollectors(collectors)
+    }
+
+    suspend fun insertCollectorDao(collectors: CollectorEntity) {
+        collectorDao.insertCollector(collectors)
+    }
+
+    suspend fun insertCollectorWithAlbumDao(collectorAlbum: CollectorAlbumCrossRefEntity) {
+        collectorDao.insertCollectorWithAlbum(collectorAlbum)
+    }
+
+    suspend fun insertCollectorWithPerformerDao(collectorPerformer: CollectorPerformerCrossRefEntity) {
+        collectorDao.insertCollectorWithPerformer(collectorPerformer)
+    }
+
+    suspend fun getCollectorByIdDao(id: Int): CollectorWithAlbumsAndPerformers {
+        return collectorDao.getCollector(id)
     }
 }
