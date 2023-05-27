@@ -45,7 +45,7 @@
                 android:hint="@string/album_release_date"
                 android:padding="16dp"
                 app:endIconMode="custom"
-                app:endIconDrawable="@drawable/ic_user_circle"
+                app:endIconDrawable="@drawable/ic_calendar"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 >
                 <!-- create a input date picker -->
@@ -64,7 +64,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="0dp"
-                android:hint="@string/album_description"
+                android:hint="@string/album_description_create"
                 android:padding="16dp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 >
@@ -84,7 +84,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="0dp"
-                    android:hint="@string/album_genre"
+                    android:hint="@string/album_genre_create"
                     android:padding="16dp"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     >
@@ -120,7 +120,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="0dp"
-                    android:hint="@string/album_record_label"
+                    android:hint="@string/album_record_label_create"
                     android:padding="16dp"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     >

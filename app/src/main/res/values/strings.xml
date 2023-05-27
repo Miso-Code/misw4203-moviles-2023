@@ -9,6 +9,9 @@
     <string name="album_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
     <string name="album_genre">Género del álbum: Género</string>
     <string name="album_record_label">Nombre de la Discografía</string>
+    <string name="album_description_create">Descripción del álbum</string>
+    <string name="album_genre_create">Género del álbum</string>
+    <string name="album_record_label_create">Nombre de la Discografía</string>
 
     <string name="collectors">Coleccionistas</string>
     <string name="collector_name">Nombre del coleccionista</string>
@@ -38,6 +41,8 @@
     <string name="tracks">Tracks</string>
     <string name="track_duration">02:00</string>
     <string name="track_name">Nombre del track</string>
+    <string name="track_duration_label">Duración del track</string>
+    <string name="track_create_button">Asociar Track</string>
 
     <string name="performer_name">Nombre del artista</string>
     <string name="performer_description">Descripción del artista</string>
