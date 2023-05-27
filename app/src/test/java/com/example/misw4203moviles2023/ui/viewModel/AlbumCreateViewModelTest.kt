@@ -7,6 +7,7 @@ import com.example.misw4203moviles2023.domain.album.model.Album
 import com.example.misw4203moviles2023.test.TestApplication
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -19,6 +20,7 @@ import org.mockito.junit.MockitoRule
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 
+@OptIn(ExperimentalCoroutinesApi::class)
 @Config(application = TestApplication::class)
 @RunWith(RobolectricTestRunner::class)
 class AlbumCreateViewModelTest {
@@ -41,7 +43,6 @@ class AlbumCreateViewModelTest {
         viewModel.createAlbumService = createAlbum
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun test_createAlbum() = runTest {
         // Arrange
@@ -51,5 +52,19 @@ class AlbumCreateViewModelTest {
         viewModel.createAlbum(album)
 
         verify(createAlbum, times(1)).invoke(album)
+    }
+
+    @Test
+    fun test_onCreateSetsGenresAndRecordLabels() = runTest {
+        // Arrange
+        val genres = listOf("Salsa", "Rock", "Folk", "Classical")
+        val recordLabels = listOf("Sony Music", "Fania Records", "EMI", "Elektra", "Discos Fuentes")
+
+        // Act
+        viewModel.onCreate()
+
+        // Assert
+        assertEquals(genres, viewModel.genres.value)
+        assertEquals(recordLabels, viewModel.recordLabels.value)
     }
 }

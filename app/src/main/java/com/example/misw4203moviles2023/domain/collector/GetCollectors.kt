@@ -7,7 +7,7 @@ import com.example.misw4203moviles2023.domain.collector.model.Collector
 import com.example.misw4203moviles2023.domain.collector.model.toDomain
 
 class GetCollectors(context: Context) {
-    private val repository = CollectorRepository(null, context)
+    private val repository = CollectorRepository(context)
 
     suspend operator fun invoke(): List<Collector> {
         val collectors: List<CollectorModel> = repository.getAllCollectorsFromApi()

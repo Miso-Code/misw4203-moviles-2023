@@ -9,9 +9,13 @@ import com.example.misw4203moviles2023.data.network.PerformerService
 import com.example.misw4203moviles2023.domain.performer.model.Performer
 import com.example.misw4203moviles2023.domain.performer.model.toDomain
 
-class PerformerRepository(service: PerformerService? = null, context: Context) {
+class PerformerRepository(
+    context: Context,
+    service: PerformerService? = null,
+    dbService: DataBaseService? = null,
+) {
     private val api = service ?: PerformerService()
-    private val dao = DataBaseService(context)
+    private val dao = dbService ?: DataBaseService(context)
 
     suspend fun getPerformersFromApi(): List<Performer> {
         val response: List<PerformerModel> = api.getPerformers()

@@ -11,9 +11,13 @@ import com.example.misw4203moviles2023.data.network.CollectorService
 import com.example.misw4203moviles2023.domain.collector.model.Collector
 import com.example.misw4203moviles2023.domain.collector.model.toDomain
 
-class CollectorRepository(service: CollectorService? = null, context: Context) {
+class CollectorRepository(
+    context: Context,
+    service: CollectorService? = null,
+    dbService: DataBaseService? = null,
+) {
     private val api = service ?: CollectorService()
-    private val dao = DataBaseService(context)
+    private val dao = dbService ?: DataBaseService(context)
 
     suspend fun getAllCollectorsFromApi(): List<CollectorModel> {
         return api.getCollectors()

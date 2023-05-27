@@ -4,7 +4,7 @@ import android.content.Context
 import com.example.misw4203moviles2023.data.AlbumRepository
 
 class DeleteTrackFromAlbumById(context: Context) {
-    private val repository = AlbumRepository(null, context)
+    private val repository = AlbumRepository(context)
 
     suspend operator fun invoke(albumId: Int, trackId: Int) {
         repository.deleteTrackFromAlbumApi(albumId, trackId)
