@@ -7,7 +7,7 @@ import com.example.misw4203moviles2023.data.database.entities.toTrack
 import com.example.misw4203moviles2023.domain.album.model.Album
 
 class GetAlbums(context: Context) {
-    private val repository = AlbumRepository(null, context)
+    private val repository = AlbumRepository(context)
 
     suspend operator fun invoke(): List<Album> {
         val albums = repository.getAllAlbumsFromApi()
@@ -20,7 +20,8 @@ class GetAlbums(context: Context) {
             )
             return albums
         } else {
-            repository.getAllAlbumsFromDB()
+            val response = repository.getAllAlbumsFromDB()
+            response
         }
     }
 }

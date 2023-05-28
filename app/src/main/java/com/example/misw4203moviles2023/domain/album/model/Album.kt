@@ -4,6 +4,7 @@ import com.example.misw4203moviles2023.data.database.entities.AlbumEntity
 import com.example.misw4203moviles2023.data.database.entities.AlbumWithTracksEntity
 import com.example.misw4203moviles2023.data.database.entities.TrackEntity
 import com.example.misw4203moviles2023.data.model.AlbumModel
+import com.example.misw4203moviles2023.data.model.AlbumModelNoTracks
 
 data class Album(
     val id: Int,
@@ -27,6 +28,17 @@ fun AlbumModel.toDomain() = Album(
     tracks.map { it.toDomain() },
 )
 
+fun AlbumModelNoTracks.toDomain() = Album(
+    id,
+    name,
+    cover,
+    releaseDate,
+    description,
+    genre,
+    recordLabel,
+    emptyList(),
+)
+
 fun AlbumModel.performerToDomain() = Album(
     id,
     name,
@@ -47,6 +59,17 @@ fun AlbumEntity.toDomain(trackList: List<TrackEntity>) = Album(
     genre,
     recordLabel,
     tracks = trackList.map { it.toDomain() },
+)
+
+fun AlbumEntity.performerToDomain() = Album(
+    id,
+    name,
+    cover,
+    releaseDate,
+    description,
+    genre,
+    recordLabel,
+    tracks = emptyList(),
 )
 
 fun AlbumWithTracksEntity.toDomain() = Album(

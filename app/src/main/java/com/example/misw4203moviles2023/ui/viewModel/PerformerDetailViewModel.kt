@@ -23,11 +23,13 @@ class PerformerDetailViewModel(application: Application) : AndroidViewModel(appl
         viewModelScope.launch {
             isLoading.postValue(true)
             val result = getPerformerById(performerId)
-            result?.albums?.forEach {
-                it.releaseDate =
-                    it.releaseDate.substring(0, TIMESTAMPT_REGEX_END).split("-").reversed()
-                        .joinToString("/")
+
+            for (i in result.albums.indices) {
+                result.albums[i].releaseDate =
+                    result.albums[i].releaseDate.substring(0, TIMESTAMPT_REGEX_END)
+                        .split("-").reversed().joinToString("/")
             }
+
             performerModel.postValue(result)
             isLoading.postValue(false)
         }

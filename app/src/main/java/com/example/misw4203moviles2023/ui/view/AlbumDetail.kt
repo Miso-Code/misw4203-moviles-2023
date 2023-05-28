@@ -9,6 +9,7 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,9 +20,6 @@ import com.example.misw4203moviles2023.databinding.FragmentAlbumDetailBinding
 import com.example.misw4203moviles2023.ui.viewModel.AlbumDetailViewModel
 
 class AlbumDetail(private val viewModel: AlbumDetailViewModel? = null) : Fragment() {
-    companion object {
-        fun newInstance() = AlbumDetail()
-    }
 
     private lateinit var trackRecyclerView: RecyclerView
     private lateinit var trackAdapter: TrackAdapter
@@ -80,6 +78,8 @@ class AlbumDetail(private val viewModel: AlbumDetailViewModel? = null) : Fragmen
             binding.albumGenre.text = "Género del álbum: ${it?.genre}"
             binding.albumRecordLabel.text = "${it?.recordLabel}"
 
+            binding.albumId.text = it?.id.toString()
+
             actionBar?.title = it?.name
 
             Glide.with(requireContext())
@@ -91,10 +91,19 @@ class AlbumDetail(private val viewModel: AlbumDetailViewModel? = null) : Fragmen
             trackRecyclerView.adapter = trackAdapter
             progressBar.visibility = View.GONE
             trackRecyclerView.visibility = View.VISIBLE
+
+            // add click listener to button to add a track to the playlist
+            binding.addTrackButton.setOnClickListener { _ ->
+                AlbumDetailDirections.actionAlbumDetailToAlbumAddTrack(it?.id ?: -1).also { action ->
+                    view.findNavController().navigate(action)
+                }
+            }
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
+        @Suppress("DEPRECATION")
         super.onActivityCreated(savedInstanceState)
         actionBar = (activity as? AppCompatActivity)?.supportActionBar
         actionBar?.title = "Cargando..."

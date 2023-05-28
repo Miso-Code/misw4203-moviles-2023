@@ -21,6 +21,9 @@ interface AlbumDao {
     @Query("Delete from  album_table")
     suspend fun deleteAllAlbums()
 
+    @Query("Delete from  album_table where album_id = :id")
+    suspend fun deleteAlbumById(id: Int)
+
     @Transaction
     @Query("SELECT * FROM album_table WHERE album_table.album_id = :id ")
     suspend fun getAlbumById(id: Int): AlbumWithTracksEntity

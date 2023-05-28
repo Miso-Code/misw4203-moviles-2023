@@ -21,10 +21,6 @@ import com.example.misw4203moviles2023.ui.viewModel.AlbumListViewModel
 
 class AlbumList(private val viewModel: AlbumListViewModel? = null) : Fragment() {
 
-    companion object {
-        fun newInstance() = AlbumList()
-    }
-
     private lateinit var albumRecyclerView: RecyclerView
     private lateinit var albumAdapter: AlbumAdapter
     private lateinit var albumLayoutManager: LinearLayoutManager
@@ -49,7 +45,7 @@ class AlbumList(private val viewModel: AlbumListViewModel? = null) : Fragment() 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        _viewModel = ViewModelProvider(this)[AlbumListViewModel::class.java]
+        _viewModel = viewModel ?: ViewModelProvider(this)[AlbumListViewModel::class.java]
         _viewModel.onCreate()
 
         progressBar = binding.progressBar
@@ -74,7 +70,9 @@ class AlbumList(private val viewModel: AlbumListViewModel? = null) : Fragment() 
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
+        @Suppress("DEPRECATION")
         super.onActivityCreated(savedInstanceState)
         actionBar = (activity as? AppCompatActivity)?.supportActionBar
         actionBar?.title = getString(R.string.menu_album_list)

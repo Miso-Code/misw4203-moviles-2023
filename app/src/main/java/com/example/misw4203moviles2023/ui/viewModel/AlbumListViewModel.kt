@@ -21,13 +21,15 @@ class AlbumListViewModel(application: Application) : AndroidViewModel(applicatio
         viewModelScope.launch {
             isLoading.postValue(true)
             val result = getAlbums()
-            result?.forEach {
-                it.releaseDate =
-                    it.releaseDate.substring(0, TIMESTAMPT_REGEX_END).split("-").reversed()
-                        .joinToString("/")
+
+            for (i in result.indices) {
+                result[i].releaseDate =
+                    result[i].releaseDate.substring(0, TIMESTAMPT_REGEX_END)
+                        .split("-").reversed().joinToString("/")
             }
-            val sortedResult = result?.sortedByDescending { it.name }
-            if (result?.isNotEmpty() == true) {
+
+            val sortedResult = result.sortedByDescending { it.name }
+            if (result.isNotEmpty()) {
                 albumModel.postValue(sortedResult)
                 isLoading.postValue(false)
             }

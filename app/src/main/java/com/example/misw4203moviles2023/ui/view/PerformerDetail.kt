@@ -21,17 +21,13 @@ import com.example.misw4203moviles2023.databinding.FragmentPerformerDetailBindin
 import com.example.misw4203moviles2023.domain.album.model.Album
 import com.example.misw4203moviles2023.ui.viewModel.PerformerDetailViewModel
 
-class PerformerDetail : Fragment() {
-
-    companion object {
-        fun newInstance() = PerformerDetail()
-    }
+class PerformerDetail(private val viewModel: PerformerDetailViewModel? = null) : Fragment() {
 
     private lateinit var albumRecyclerView: RecyclerView
     private lateinit var albumAdapter: AlbumAdapter
     private lateinit var albumLayoutManager: LinearLayoutManager
 
-    private lateinit var viewModel: PerformerDetailViewModel
+    private lateinit var _viewModel: PerformerDetailViewModel
 
     private var _binding: FragmentPerformerDetailBinding? = null
     private val binding get() = _binding!!
@@ -53,9 +49,14 @@ class PerformerDetail : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this)[PerformerDetailViewModel::class.java]
-        viewModel.onCreate(args.performerId)
+        _viewModel = viewModel ?: ViewModelProvider(this)[PerformerDetailViewModel::class.java]
+        _viewModel.onCreate(args.performerId)
 
+        setupViews()
+        observeDataChanges(view)
+    }
+
+    private fun setupViews() {
         progressBar = binding.progressBarPerformerDetail
 
         albumRecyclerView = binding.performerListRecyclerView
@@ -67,8 +68,10 @@ class PerformerDetail : Fragment() {
         binding.performerDescription.visibility = View.GONE
         binding.performerAlbums.visibility = View.GONE
         binding.performerDetailImageView.visibility = View.GONE
+    }
 
-        viewModel.performerModel.observe(viewLifecycleOwner) {
+    private fun observeDataChanges(view: View) {
+        _viewModel.performerModel.observe(viewLifecycleOwner) {
             if (it?.albums?.isEmpty() != true) {
                 binding.performerAlbums.visibility = View.VISIBLE
             }
@@ -100,9 +103,11 @@ class PerformerDetail : Fragment() {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
+        @Suppress("DEPRECATION")
         super.onActivityCreated(savedInstanceState)
-        actionBar = (activity as AppCompatActivity?)!!.supportActionBar
+        actionBar = (activity as? AppCompatActivity)?.supportActionBar
         actionBar?.title = "Cargando..."
     }
 }

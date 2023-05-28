@@ -5,6 +5,7 @@ import androidx.test.platform.app.InstrumentationRegistry
 import com.example.misw4203moviles2023.domain.album.GetAlbums
 import com.example.misw4203moviles2023.mockAlbum
 import com.example.misw4203moviles2023.test.TestApplication
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -37,6 +38,7 @@ class AlbumListViewModelTest {
         viewModel.getAlbums = getAlbums
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun testOnCreate() = runTest {
         val albumId = 1

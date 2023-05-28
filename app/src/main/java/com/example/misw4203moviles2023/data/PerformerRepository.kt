@@ -4,15 +4,18 @@ import android.content.Context
 import com.example.misw4203moviles2023.data.database.DataBaseService
 import com.example.misw4203moviles2023.data.database.entities.PerformerAlbumCrossRefEntity
 import com.example.misw4203moviles2023.data.database.entities.toDatabase
-import com.example.misw4203moviles2023.data.database.entities.toWithAlbumsDB
 import com.example.misw4203moviles2023.data.model.PerformerModel
 import com.example.misw4203moviles2023.data.network.PerformerService
 import com.example.misw4203moviles2023.domain.performer.model.Performer
 import com.example.misw4203moviles2023.domain.performer.model.toDomain
 
-class PerformerRepository(service: PerformerService? = null, context: Context) {
+class PerformerRepository(
+    context: Context,
+    service: PerformerService? = null,
+    dbService: DataBaseService? = null,
+) {
     private val api = service ?: PerformerService()
-    private val dao = DataBaseService(context)
+    private val dao = dbService ?: DataBaseService(context)
 
     suspend fun getPerformersFromApi(): List<Performer> {
         val response: List<PerformerModel> = api.getPerformers()
@@ -32,6 +35,11 @@ class PerformerRepository(service: PerformerService? = null, context: Context) {
         return null
     }
 
+    suspend fun getPerformerByIdFromDB(id: Int): Performer {
+        val response = dao.getPerformerByIdDao(id)
+        return response.toDomain()
+    }
+
     suspend fun clearAllPerformer() {
         dao.deleteAllPerformerDao()
     }
@@ -42,12 +50,13 @@ class PerformerRepository(service: PerformerService? = null, context: Context) {
     }
 
     suspend fun insertAllPerformer(performers: List<Performer>) {
-        performers.map { it.toWithAlbumsDB() }
         val dataDb = performers.map { it.toDatabase() }
-        performers.map {
-            it.albums.map { album ->
+        performers.forEach { performer ->
+            dao.insertAlbumsDao(performer.albums.map { it.toDatabase() })
+
+            performer.albums.forEach { album ->
                 dao.insertPerformerWithAlbumDao(
-                    PerformerAlbumCrossRefEntity(albumId = album.id, performerId = it.id),
+                    PerformerAlbumCrossRefEntity(albumId = album.id, performerId = performer.id),
                 )
             }
         }

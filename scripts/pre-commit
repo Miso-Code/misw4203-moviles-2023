@@ -6,9 +6,6 @@ echo "-----------------------"
 OUTPUT_DIR="/tmp/pre-commit-output"
 mkdir -p $OUTPUT_DIR
 
-# Stash any unstaged changes
-git stash -q --keep-index
-
 # Run ktlint
 echo "Running ktlint"
 KTLINT_OUTPUT=$OUTPUT_DIR/ktlint.txt
@@ -71,6 +68,3 @@ fi
 
 # Delete output dir
 rm -rf $OUTPUT_DIR
-
-# Unstash unstaged changes
-git stash pop -q
