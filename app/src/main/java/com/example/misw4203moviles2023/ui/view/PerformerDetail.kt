@@ -23,10 +23,6 @@ import com.example.misw4203moviles2023.ui.viewModel.PerformerDetailViewModel
 
 class PerformerDetail(private val viewModel: PerformerDetailViewModel? = null) : Fragment() {
 
-    companion object {
-        fun newInstance() = PerformerDetail()
-    }
-
     private lateinit var albumRecyclerView: RecyclerView
     private lateinit var albumAdapter: AlbumAdapter
     private lateinit var albumLayoutManager: LinearLayoutManager
@@ -107,8 +103,9 @@ class PerformerDetail(private val viewModel: PerformerDetailViewModel? = null) :
         }
     }
 
-    @Suppress("DEPRECATION")
+    @Deprecated("Deprecated in Java")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
+        @Suppress("DEPRECATION")
         super.onActivityCreated(savedInstanceState)
         actionBar = (activity as? AppCompatActivity)?.supportActionBar
         actionBar?.title = "Cargando..."

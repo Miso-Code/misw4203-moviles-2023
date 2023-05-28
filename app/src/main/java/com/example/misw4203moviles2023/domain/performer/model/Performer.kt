@@ -11,7 +11,7 @@ data class Performer(
     val name: String,
     val description: String,
     var image: String,
-    val albums: List<Album>,
+    var albums: List<Album>,
 )
 
 fun PerformerModel.toDomain() =

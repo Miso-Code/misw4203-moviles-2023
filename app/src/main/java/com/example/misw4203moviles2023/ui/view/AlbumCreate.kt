@@ -268,8 +268,9 @@ class AlbumCreate(private val viewModel: AlbumCreateViewModel? = null) :
         releaseDateEditText.setText(formattedDate)
     }
 
-    @Suppress("DEPRECATION")
+    @Deprecated("Deprecated in Java")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
+        @Suppress("DEPRECATION")
         super.onActivityCreated(savedInstanceState)
         val actionBar = (activity as? AppCompatActivity)?.supportActionBar
         actionBar?.title = getString(R.string.menu_album_create)
