@@ -27,7 +27,17 @@ Click "OK" to open the project.
 ````
 Android Studio 3.0 or higher
 Android SDK
+Java 17 installed and configured as the default version.
 ````
+
+### Configuring in Android Studio
+
+1. Open Android Studio.
+2. Go to the "Settings" or "Preferences" window.
+3. In the "Build, Execution, Deployment" section, select "Compiler" or "Build, Execution, Deployment > Compiler" in the left panel.
+4. In the compiler settings, locate the "Java Compiler" or "Target bytecode version" option.
+5. Select "17" as the desired Java version.
+6. Click "Apply" or "OK" to save the changes.
 
 ### Contributing
 To contribute to this project, follow these steps:
