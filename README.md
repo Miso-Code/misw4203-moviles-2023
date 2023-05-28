@@ -27,6 +27,7 @@ Click "OK" to open the project.
 ````
 Android Studio 3.0 or higher
 Android SDK
+Java 17 installed and configured as the default version.
 ````
 
 ### Contributing
