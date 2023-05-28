@@ -21,10 +21,6 @@ import com.example.misw4203moviles2023.ui.viewModel.PerformerListViewModel
 
 class PerformerList(private val viewModel: PerformerListViewModel? = null) : Fragment() {
 
-    companion object {
-        fun newInstance() = PerformerList()
-    }
-
     private lateinit var performerRecyclerView: RecyclerView
     private lateinit var performerAdapter: PerformerAdapter
     private lateinit var performerLayoutManager: LinearLayoutManager
@@ -49,7 +45,7 @@ class PerformerList(private val viewModel: PerformerListViewModel? = null) : Fra
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        _viewModel = ViewModelProvider(this)[PerformerListViewModel::class.java]
+        _viewModel = viewModel ?: ViewModelProvider(this)[PerformerListViewModel::class.java]
         _viewModel.onCreate()
 
         progressBar = binding.performerProgressBar
@@ -75,8 +71,9 @@ class PerformerList(private val viewModel: PerformerListViewModel? = null) : Fra
         }
     }
 
-    @Suppress("DEPRECATION")
+    @Deprecated("Deprecated in Java")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
+        @Suppress("DEPRECATION")
         super.onActivityCreated(savedInstanceState)
         actionBar = (activity as? AppCompatActivity)?.supportActionBar
         actionBar?.title = getString(R.string.menu_performer_list)

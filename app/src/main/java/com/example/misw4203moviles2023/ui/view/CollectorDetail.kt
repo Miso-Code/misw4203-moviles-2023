@@ -108,28 +108,23 @@ class CollectorDetail(private val viewModel: CollectorDetailViewModel? = null) :
             actionBar?.title = it?.name
 
             if (it?.albums?.isEmpty() == false) {
+                for (i in it.albums.indices) {
+                    it.albums[i].releaseDate = it.albums[i].releaseDate.substring(
+                        0,
+                        TIMESTAMPT_REGEX_END,
+                    ).split("-").reversed().joinToString("/")
+                }
+
                 albumAdapter = AlbumAdapter(
                     requireContext(),
-                    it.albums.map { albumAux ->
-                        Album(
-                            albumAux.id,
-                            albumAux.name,
-                            albumAux.cover,
-                            albumAux.releaseDate.substring(0, TIMESTAMPT_REGEX_END).split("-")
-                                .reversed()
-                                .joinToString("/"),
-                            albumAux.description,
-                            albumAux.genre,
-                            albumAux.recordLabel,
-                            emptyList(),
-                        )
-                    },
+                    it.albums,
                 )
                 albumAdapter.setOnItemClickListener(object : OnItemClickListener {
                     override fun onItemClick(position: Int, album: Album) {
-                        CollectorDetailDirections.actionCollectorDetailToAlbumDetail(album.id).also { action ->
-                            view.findNavController().navigate(action)
-                        }
+                        CollectorDetailDirections.actionCollectorDetailToAlbumDetail(album.id)
+                            .also { action ->
+                                view.findNavController().navigate(action)
+                            }
                     }
                 })
                 albumRecyclerView.adapter = albumAdapter
@@ -137,19 +132,16 @@ class CollectorDetail(private val viewModel: CollectorDetailViewModel? = null) :
             }
 
             if (it?.performers?.isEmpty() == false) {
+                for (i in it.performers.indices) {
+                    it.performers[i].albums = emptyList()
+                }
+
                 performerAdapter =
                     PerformerAdapter(
                         requireContext(),
-                        it.performers.map { performerAux ->
-                            Performer(
-                                performerAux.id,
-                                performerAux.name,
-                                performerAux.description,
-                                performerAux.image,
-                                emptyList(),
-                            )
-                        },
+                        it.performers,
                     )
+
                 performerAdapter.setOnItemClickListener(object : OnPerformerClickListener {
                     override fun onItemClick(position: Int, performer: Performer) {
                         CollectorDetailDirections.actionCollectorDetailToPerformerDetail(performer.id)
@@ -163,7 +155,10 @@ class CollectorDetail(private val viewModel: CollectorDetailViewModel? = null) :
             }
         }
     }
+
+    @Deprecated("Deprecated in Java")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
+        @Suppress("DEPRECATION")
         super.onActivityCreated(savedInstanceState)
         actionBar = (activity as? AppCompatActivity)?.supportActionBar
         actionBar?.title = "Cargando..."
